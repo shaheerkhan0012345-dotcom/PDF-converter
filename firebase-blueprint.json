@@ -1,0 +1,51 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile, configuration, and storage usage data",
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string",
+          "description": "User's verified email address"
+        },
+        "displayName": {
+          "type": "string",
+          "description": "Full display name of the user"
+        },
+        "jobTitle": {
+          "type": "string",
+          "description": "Professional job title or role"
+        },
+        "avatarColor": {
+          "type": "string",
+          "description": "Selected avatar color theme accent"
+        },
+        "isPremium": {
+          "type": "boolean",
+          "description": "Subscription status indicating if premium limits are active"
+        },
+        "storageUsedBytes": {
+          "type": "integer",
+          "description": "Total bytes of document files uploaded to cloud storage context"
+        },
+        "preferences": {
+          "type": "object",
+          "description": "User workspace UX preference settings"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp indicating when the profile was initialized"
+        }
+      },
+      "required": ["email", "isPremium", "storageUsedBytes", "createdAt"]
+    }
+  },
+  "firestore": {
+    "users/{userId}": {
+      "schema": { "$ref": "User" },
+      "description": "Individual user dashboard workspace profiles mapping by uid"
+    }
+  }
+}
