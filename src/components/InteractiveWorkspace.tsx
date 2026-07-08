@@ -299,16 +299,20 @@ All document data processed under this agreement is governed by standard E2E AES
         setProcessingState("Interpreting layout cells...");
         setProcessingProgress(25);
 
-        const text = await firstFile.rawFile.text();
+        // Since we are running in the browser without a backend, we can't easily parse real .doc/.xls files.
+        // We will just generate a friendly placeholder PDF for the mockup.
         setProcessingState("Drawing printable PDF grids...");
         setProcessingProgress(65);
 
         const doc = new jsPDF();
+        doc.setFont("Helvetica", "bold");
+        doc.setFontSize(16);
+        doc.text("Mock Conversion Complete", 15, 20);
+        
         doc.setFont("Helvetica", "normal");
         doc.setFontSize(11);
-
-        const lines = doc.splitTextToSize(text || `DocuFlow ${activeTool.name} layout preservation completed perfectly.`, 180);
-        doc.text(lines, 15, 20);
+        const lines = doc.splitTextToSize(`The file "${firstFile.name}" was processed by the ${activeTool.name} tool.\n\nNote: Real client-side conversion of Office documents requires heavy external libraries. This is a placeholder document.`, 180);
+        doc.text(lines, 15, 30);
 
         const pdfBytes = doc.output('arraybuffer');
         const pdfBlob = new Blob([pdfBytes], { type: 'application/pdf' });
