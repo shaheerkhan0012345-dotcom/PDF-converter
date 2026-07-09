@@ -3,10 +3,11 @@ export interface PDFTool {
   name: string;
   description: string;
   icon: string; // Lucide icon name
-  category: 'convert-from' | 'convert-to' | 'organize' | 'security' | 'edit';
+  category: 'convert' | 'edit' | 'organize' | 'security' | 'ocr' | 'ai' | string;
   badge?: string;
-  colorClass: string;
-  bgClass: string;
+  colorClass?: string;
+  bgClass?: string;
+  color?: string; // Dashboard style color string
 }
 
 export interface UploadedFile {

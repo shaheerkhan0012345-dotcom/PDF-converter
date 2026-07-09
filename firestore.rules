@@ -16,56 +16,9 @@ service cloud.firestore {
       return isSignedIn() && request.auth.uid == userId;
     }
 
-    function isValidId(id) {
-      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
-    }
-
-    function incoming() {
-      return request.resource.data;
-    }
-
-    function existing() {
-      return resource.data;
-    }
-
-    // Standalone entity validation helper
-    function isValidUser(data) {
-      return data.keys().hasAll(['email', 'isPremium', 'storageUsedBytes', 'createdAt'])
-        && data.email is string
-        && data.isPremium is bool
-        && data.storageUsedBytes is int
-        && data.storageUsedBytes >= 0
-        && (data.displayName == null || (data.displayName is string && data.displayName.size() <= 128))
-        && (data.jobTitle == null || (data.jobTitle is string && data.jobTitle.size() <= 128))
-        && (data.avatarColor == null || (data.avatarColor is string && data.avatarColor.size() <= 64))
-        && (data.preferences == null || data.preferences is map)
-        && data.createdAt is timestamp;
-    }
-
     // Collection definition match block
     match /users/{userId} {
-      allow get: if isOwner(userId);
-      
-      allow create: if isOwner(userId)
-        && isValidId(userId)
-        && isValidUser(incoming())
-        && incoming().isPremium == false
-        && incoming().storageUsedBytes == 0;
-        
-      allow update: if isOwner(userId)
-        && isValidId(userId)
-        && isValidUser(incoming())
-        && incoming().createdAt == existing().createdAt
-        && (
-          // Action 1: Update profile / preferences
-          (incoming().diff(existing()).affectedKeys().hasOnly(['displayName', 'jobTitle', 'avatarColor', 'preferences']))
-          // Action 2: Incremental storage update (can change storageUsedBytes)
-          || (incoming().diff(existing()).affectedKeys().hasOnly(['storageUsedBytes']))
-          // Action 3: Upgrade to premium
-          || (incoming().diff(existing()).affectedKeys().hasOnly(['isPremium']))
-        );
-        
-      allow delete: if false; // User profiles are immutable against deletions
+      allow read, write: if isOwner(userId);
     }
   }
 }

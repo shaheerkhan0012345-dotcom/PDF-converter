@@ -13,6 +13,7 @@ import {
 } from 'lucide-react';
 import InteractiveWorkspace from './InteractiveWorkspace';
 import { SettingsView } from './SettingsView';
+import { PDF_TOOLS } from '../data';
 
 // Format bytes helper
 const formatBytes = (bytes: number): string => {
@@ -21,63 +22,6 @@ const formatBytes = (bytes: number): string => {
   const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
   const i = Math.floor(Math.log(bytes) / Math.log(k));
   return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
-};
-
-// Full list of 31 tools from the requested section
-interface DashboardTool {
-  id: string;
-  name: string;
-  desc: string;
-  icon: string;
-  color: string;
-  category: 'convert' | 'edit' | 'organize' | 'security' | 'ocr' | 'ai';
-}
-
-const DASHBOARD_TOOLS: DashboardTool[] = [
-  { id: "pdf-to-word", name: "PDF to Word", desc: "Convert PDF documents to editable Word.", icon: "FileText", color: "bg-blue-100 text-blue-600 border-blue-200/40 hover:bg-blue-200/20", category: "convert" },
-  { id: "word-to-pdf", name: "Word to PDF", desc: "Make Word files easy to read with PDF.", icon: "FileDown", color: "bg-blue-50 text-blue-500 border-blue-100/40 hover:bg-blue-100/10", category: "convert" },
-  { id: "pdf-to-excel", name: "PDF to Excel", desc: "Extract PDF tables into Excel sheets.", icon: "Table", color: "bg-emerald-100 text-emerald-600 border-emerald-200/40 hover:bg-emerald-200/20", category: "convert" },
-  { id: "excel-to-pdf", name: "Excel to PDF", desc: "Convert spreadsheets to PDF document.", icon: "FileSpreadsheet", color: "bg-emerald-50 text-emerald-500 border-emerald-100/40 hover:bg-emerald-100/10", category: "convert" },
-  { id: "pdf-to-powerpoint", name: "PDF to PowerPoint", desc: "Turn PDFs into editable presentations.", icon: "Presentation", color: "bg-orange-100 text-orange-600 border-orange-200/40 hover:bg-orange-200/20", category: "convert" },
-  { id: "powerpoint-to-pdf", name: "PowerPoint to PDF", desc: "Save presentations as PDF files.", icon: "Presentation", color: "bg-orange-50 text-orange-500 border-orange-100/40 hover:bg-orange-100/10", category: "convert" },
-  { id: "pdf-to-jpg", name: "PDF to JPG", desc: "Convert PDF pages into high-quality images.", icon: "ImageIcon", color: "bg-pink-100 text-pink-600 border-pink-200/40 hover:bg-pink-200/20", category: "convert" },
-  { id: "jpg-to-pdf", name: "JPG to PDF", desc: "Merge and convert images into a PDF.", icon: "ImageIcon", color: "bg-pink-50 text-pink-500 border-pink-100/40 hover:bg-pink-100/10", category: "convert" },
-  { id: "pdf-to-png", name: "PDF to PNG", desc: "Convert PDF to transparent PNG files.", icon: "ImageIcon", color: "bg-purple-100 text-purple-600 border-purple-200/40 hover:bg-purple-200/20", category: "convert" },
-  { id: "png-to-pdf", name: "PNG to PDF", desc: "Convert PNG images to PDF easily.", icon: "ImageIcon", color: "bg-purple-50 text-purple-500 border-purple-100/40 hover:bg-purple-100/10", category: "convert" },
-  { id: "pdf-to-html", name: "PDF to HTML", desc: "Transform PDFs into responsive HTML.", icon: "Code", color: "bg-cyan-100 text-cyan-600 border-cyan-200/40 hover:bg-cyan-200/20", category: "convert" },
-  { id: "html-to-pdf", name: "HTML to PDF", desc: "Convert any webpage to PDF format.", icon: "Globe", color: "bg-cyan-50 text-cyan-500 border-cyan-100/40 hover:bg-cyan-100/10", category: "convert" },
-  { id: "pdf-to-text", name: "PDF to Text", desc: "Extract all plain text from your PDF.", icon: "FileText", color: "bg-gray-100 text-gray-600 border-gray-200/40 hover:bg-gray-200/20", category: "convert" },
-  { id: "text-to-pdf", name: "Text to PDF", desc: "Convert text files to professional PDF.", icon: "FileText", color: "bg-gray-50 text-gray-500 border-gray-100/40 hover:bg-gray-100/10", category: "convert" },
-  { id: "ocr-scanner", name: "OCR Scanner", desc: "Turn scans into searchable text PDFs.", icon: "ScanLine", color: "bg-indigo-100 text-indigo-600 border-indigo-200/40 hover:bg-indigo-200/20", category: "ocr" },
-  { id: "extract-text", name: "Extract Text", desc: "Use AI to pull text from images/PDFs.", icon: "CheckSquare", color: "bg-indigo-50 text-indigo-500 border-indigo-100/40 hover:bg-indigo-100/10", category: "ocr" },
-  { id: "edit-pdf", name: "Edit PDF", desc: "Modify text and images directly in PDF.", icon: "FileEdit", color: "bg-blue-100 text-blue-700 border-blue-200/40 hover:bg-blue-200/20", category: "edit" },
-  { id: "rotate-pdf", name: "Rotate PDF", desc: "Fix orientation of individual pages.", icon: "RotateCw", color: "bg-blue-50 text-blue-600 border-blue-100/40 hover:bg-blue-100/10", category: "organize" },
-  { id: "crop-pdf", name: "Crop PDF", desc: "Adjust margins or trim page content.", icon: "Scissors", color: "bg-amber-100 text-amber-600 border-amber-200/40 hover:bg-amber-200/20", category: "edit" },
-  { id: "watermark-pdf", name: "Watermark PDF", desc: "Add custom text or image watermarks.", icon: "Stamp", color: "bg-teal-100 text-teal-600 border-teal-200/40 hover:bg-teal-200/20", category: "security" },
-  { id: "page-numbers", name: "Page Numbers", desc: "Add headers or footers with numbers.", icon: "Layers", color: "bg-slate-100 text-slate-600 border-slate-200/40 hover:bg-slate-200/20", category: "organize" },
-  { id: "sign-pdf", name: "Sign PDF", desc: "Request and apply digital signatures.", icon: "Signature", color: "bg-rose-100 text-rose-600 border-rose-200/40 hover:bg-rose-200/20", category: "security" },
-  { id: "merge-pdf", name: "Merge PDF", desc: "Combine multiple PDFs into one file.", icon: "Combine", color: "bg-sky-100 text-sky-600 border-sky-200/40 hover:bg-sky-200/20", category: "organize" },
-  { id: "split-pdf", name: "Split PDF", desc: "Separate pages into multiple files.", icon: "Scissors", color: "bg-sky-50 text-sky-500 border-sky-100/40 hover:bg-sky-100/10", category: "organize" },
-  { id: "compress-pdf", name: "Compress PDF", desc: "Reduce file size without quality loss.", icon: "Minimize2", color: "bg-violet-100 text-violet-600 border-violet-200/40 hover:bg-violet-200/20", category: "organize" },
-  { id: "repair-pdf", name: "Repair PDF", desc: "Fix corrupted or unreadable documents.", icon: "Wrench", color: "bg-red-100 text-red-600 border-red-200/40 hover:bg-red-200/20", category: "edit" },
-  { id: "protect-pdf", name: "Protect PDF", desc: "Add password and encrypt your PDF.", icon: "Lock", color: "bg-stone-100 text-stone-600 border-stone-200/40 hover:bg-stone-200/20", category: "security" },
-  { id: "unlock-pdf", name: "Unlock PDF", desc: "Remove passwords and restrictions.", icon: "Unlock", color: "bg-stone-50 text-stone-500 border-stone-100/40 hover:bg-stone-100/10", category: "security" },
-  { id: "compare-pdf", name: "Compare PDF", desc: "Identify differences between two PDFs.", icon: "Copy", color: "bg-lime-100 text-lime-600 border-lime-200/40 hover:bg-lime-200/20", category: "edit" },
-  { id: "scan-to-pdf", name: "Scan to PDF", desc: "Mobile-ready document scanning.", icon: "ScanLine", color: "bg-fuchsia-100 text-fuchsia-600 border-fuchsia-200/40 hover:bg-fuchsia-200/20", category: "ocr" },
-  { id: "ai-pdf-assistant", name: "AI PDF Assistant", desc: "Chat with your PDF to summarize key points.", icon: "Sparkles", color: "bg-indigo-600 text-white border-indigo-700/40 hover:bg-indigo-700/90", category: "ai" }
-];
-
-// Helper to map UI ids to functional tool IDs in InteractiveWorkspace
-const mapToolId = (id: string): string => {
-  if (id === 'powerpoint-to-pdf' || id === 'pdf-to-powerpoint') return 'ppt-to-pdf';
-  if (id === 'pdf-to-excel') return 'extract-text';
-  if (id === 'pdf-to-png' || id === 'png-to-pdf' || id === 'jpg-to-pdf') return 'pdf-to-jpg';
-  if (id === 'pdf-to-html' || id === 'html-to-pdf' || id === 'pdf-to-text' || id === 'text-to-pdf') return 'extract-text';
-  if (id === 'crop-pdf' || id === 'repair-pdf' || id === 'compare-pdf') return 'edit-pdf';
-  if (id === 'page-numbers') return 'watermark-pdf';
-  if (id === 'scan-to-pdf') return 'ocr-scanner';
-  if (id === 'ai-pdf-assistant') return 'ocr-scanner'; // Uses high-fidelity OCR with AI
-  return id;
 };
 
 const getIconComponent = (iconName: string, className: string = 'w-5 h-5') => {
@@ -186,17 +130,16 @@ export const LuminaDashboard: React.FC<LuminaDashboardProps> = ({ user, onToast 
 
   // Filter tools based on query and category
   const filteredTools = useMemo(() => {
-    return DASHBOARD_TOOLS.filter(tool => {
+    return PDF_TOOLS.filter(tool => {
       const matchesSearch = tool.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
-                            tool.desc.toLowerCase().includes(searchQuery.toLowerCase());
+                            tool.description.toLowerCase().includes(searchQuery.toLowerCase());
       const matchesCategory = selectedCategory === 'all' || tool.category === selectedCategory;
       return matchesSearch && matchesCategory;
     });
   }, [searchQuery, selectedCategory]);
 
   const handleToolSelect = (toolId: string, toolName: string) => {
-    const functionalId = mapToolId(toolId);
-    setActiveToolId(functionalId);
+    setActiveToolId(toolId);
     setViewMode('workspace');
     onToast(`Opened ${toolName}`);
   };
@@ -691,7 +634,7 @@ export const LuminaDashboard: React.FC<LuminaDashboardProps> = ({ user, onToast 
                           {tool.name}
                         </h3>
                         <p className="text-xs text-brand-gray leading-relaxed font-medium line-clamp-2">
-                          {tool.desc}
+                          {tool.description}
                         </p>
                       </div>
                     </motion.div>
