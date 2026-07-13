@@ -23,7 +23,7 @@ export default function PricingRoiCalculator() {
             Calculate Your Efficiency Savings
           </h4>
           <p className="text-xs text-brand-gray mt-1">
-            See how much time, capital, and carbon offset you unlock by migrating to DocuFlow.
+            See how much time, capital, and carbon offset you unlock by migrating to Naughty PDF.
           </p>
         </div>
         

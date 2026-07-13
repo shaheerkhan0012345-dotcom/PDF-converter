@@ -51,7 +51,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, onSuccess
             displayName: fullName.trim()
           });
         }
-        onSuccess(`Welcome to DocuFlow, ${fullName || email}!`);
+        onSuccess(`Welcome to Naughty PDF, ${fullName || email}!`);
       } else {
         // Sign in user
         const userCredential = await signInWithEmailAndPassword(auth, email, password);

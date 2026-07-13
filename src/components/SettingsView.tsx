@@ -285,7 +285,7 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
                         type="email"
                         readOnly
                         disabled
-                        value={user.email || 'guest@docuflow.com'}
+                        value={user.email || 'guest@naughty-pdf.com'}
                         className="w-full bg-slate-50 border border-brand-border/60 rounded-xl py-2.5 pl-10 pr-12 text-xs sm:text-sm font-semibold text-brand-gray cursor-not-allowed outline-none"
                       />
                       <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-1.5 bg-emerald-50 text-emerald-600 px-2 py-0.5 rounded-lg border border-emerald-100 select-none">

@@ -27,8 +27,9 @@ export default function App() {
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
   
-  // Auth states
+  // Auth and loading states
   const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState(true);
   const [authModalOpen, setAuthModalOpen] = useState(false);
   const [authModalInitialSignUp, setAuthModalInitialSignUp] = useState(false);
   const [userDropdownOpen, setUserDropdownOpen] = useState(false);
@@ -38,10 +39,17 @@ export default function App() {
     setAuthModalOpen(true);
   };
 
-  // Sync auth state
+  // Sync auth state and manage loading
   useEffect(() => {
+    let initialChecked = false;
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
+      if (!initialChecked) {
+        initialChecked = true;
+        setTimeout(() => {
+          setLoading(false);
+        }, 1200);
+      }
     });
     return () => unsubscribe();
   }, []);
@@ -49,7 +57,11 @@ export default function App() {
   // Monitor scrolling to style header
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      if (window.scrollY > 20) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -107,6 +119,59 @@ export default function App() {
     const Comp = dic[iconName] || Sparkles;
     return <Comp className={className} />;
   };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-brand-bg flex flex-col items-center justify-center selection:bg-brand-primary selection:text-white relative overflow-hidden">
+        {/* Background Mesh Gradients */}
+        <div className="absolute inset-0 mesh-gradient opacity-60 -z-10"></div>
+        
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          className="flex flex-col items-center"
+        >
+          {/* Animated Icon Ring */}
+          <div className="relative flex items-center justify-center w-16 h-16 rounded-2xl bg-white border border-brand-border/40 shadow-[0_8px_30px_rgb(0,0,0,0.04)] mb-4">
+            <motion.div 
+              className="absolute inset-0 rounded-2xl bg-brand-primary/5"
+              animate={{ scale: [1, 1.15, 1] }}
+              transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+            />
+            <div className="w-10 h-10 rounded-xl bg-brand-primary flex items-center justify-center shadow-lg shadow-brand-primary/25 z-10">
+              <FileText className="text-white w-5 h-5 stroke-[2.2px]" />
+            </div>
+          </div>
+
+          {/* Brand Wordmark */}
+          <span className="font-display font-extrabold text-2xl tracking-tight text-brand-text">
+            Naughty PDF<span className="text-brand-primary">.</span>
+          </span>
+
+          {/* Infinite marquee loader */}
+          <div className="w-24 h-1 bg-slate-200/60 rounded-full overflow-hidden mt-4 relative">
+            <motion.div 
+              className="absolute top-0 bottom-0 left-0 bg-brand-primary rounded-full w-[40%]"
+              animate={{ 
+                x: ["-100%", "250%"] 
+              }}
+              transition={{ 
+                repeat: Infinity, 
+                duration: 1.4, 
+                ease: "easeInOut" 
+              }}
+            />
+          </div>
+
+          {/* Subtext */}
+          <span className="text-[9px] text-brand-gray font-mono font-bold tracking-widest uppercase mt-3.5 opacity-80">
+            Initializing Workspace
+          </span>
+        </motion.div>
+      </div>
+    );
+  }
 
   if (user) {
     return (
@@ -177,7 +242,7 @@ export default function App() {
               <FileCheck className="w-5 h-5 stroke-[2.5px]" />
             </div>
             <span className="font-display font-extrabold text-xl tracking-tight text-brand-text">
-              DocuFlow<span className="text-brand-primary">.</span>
+              Naughty PDF<span className="text-brand-primary">.</span>
             </span>
           </a>
 
@@ -689,7 +754,7 @@ export default function App() {
             Four Steps to Secure Success
           </h2>
           <p className="text-brand-gray text-base">
-            How DocuFlow automates conversions while maintaining a strictly airtight secure isolated session.
+            How Naughty PDF automates conversions while maintaining a strictly airtight secure isolated session.
           </p>
         </motion.div>
 
@@ -792,7 +857,7 @@ export default function App() {
               </div>
             </div>
 
-            {/* DocuFlow Method Card */}
+            {/* Naughty PDF Method Card */}
             <div className="p-8 rounded-[28px] bg-brand-primary border border-white/10 flex flex-col justify-between shadow-2xl relative overflow-hidden">
               <div className="absolute top-0 right-0 bg-brand-accent text-brand-text text-[10px] font-bold px-3.5 py-1 rounded-bl-2xl">
                 SECURE &amp; CERTIFIED
@@ -801,7 +866,7 @@ export default function App() {
               <div>
                 <h4 className="text-brand-accent font-display font-black text-lg flex items-center gap-2 mb-6">
                   <CheckCircle2 className="w-5 h-5 text-brand-accent shrink-0" />
-                  THE DOCUFLOW SYSTEM
+                  THE NAUGHTY PDF SYSTEM
                 </h4>
                 
                 <ul className="flex flex-col gap-4 text-xs text-white/90">
@@ -1012,7 +1077,7 @@ export default function App() {
             Got Questions? We Have Answers.
           </h2>
           <p className="text-brand-gray text-base">
-            Understand how DocuFlow delivers premium C++ speed, layout security, and zero footprint.
+            Understand how Naughty PDF delivers premium C++ speed, layout security, and zero footprint.
           </p>
         </div>
 
@@ -1082,7 +1147,7 @@ export default function App() {
           </h2>
           
           <p className="text-white/70 text-sm leading-relaxed mb-6">
-            Join thousands of professional CTOs, legal departments, and digital creators who trust DocuFlow with their sensitive PDF requirements. Wiped in 60 minutes.
+            Join thousands of professional CTOs, legal departments, and digital creators who trust Naughty PDF with their sensitive PDF requirements. Wiped in 60 minutes.
           </p>
 
           <div className="flex flex-wrap justify-center gap-4 w-full sm:w-auto">
@@ -1134,7 +1199,7 @@ export default function App() {
                 <FileCheck className="w-4.5 h-4.5 stroke-[2.5px]" />
               </div>
               <span className="font-display font-extrabold text-lg tracking-tight text-white">
-                DocuFlow<span className="text-brand-primary">.</span>
+                Naughty PDF<span className="text-brand-primary">.</span>
               </span>
             </a>
             
@@ -1143,7 +1208,7 @@ export default function App() {
             </p>
             
             <p className="text-white/40 text-[10px] font-mono mt-4">
-              © 2026 DocuFlow AI Corporation. All rights reserved globally.
+              © 2026 Naughty PDF Corporation. All rights reserved globally.
             </p>
           </div>
 

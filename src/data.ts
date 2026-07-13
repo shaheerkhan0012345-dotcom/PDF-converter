@@ -424,7 +424,7 @@ export const TESTIMONIALS: Testimonial[] = [
     name: 'Sarah Chen',
     role: 'CTO',
     company: 'InnovateX Solutions',
-    text: "DocuFlow has completely replaced our legacy corporate PDF software. The OCR accuracy is leagues ahead of anything we have tried before, and our team processes thousands of documents monthly with zero hiccups.",
+    text: "Naughty PDF has completely replaced our legacy corporate PDF software. The OCR accuracy is leagues ahead of anything we have tried before, and our team processes thousands of documents monthly with zero hiccups.",
     rating: 5,
     avatarUrl: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=120&h=120'
   },
@@ -440,7 +440,7 @@ export const TESTIMONIALS: Testimonial[] = [
     name: 'Elena Rodriguez',
     role: 'Managing Partner',
     company: 'L&R Legal Partners',
-    text: "As a legal firm, data security is non-negotiable. DocuFlow's direct commitment to HIPAA-grade compliance and automatic deletion within 60 minutes makes it the only PDF platform we fully trust with client documents.",
+    text: "As a legal firm, data security is non-negotiable. Naughty PDF's direct commitment to HIPAA-grade compliance and automatic deletion within 60 minutes makes it the only PDF platform we fully trust with client documents.",
     rating: 5,
     avatarUrl: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=120&h=120'
   }
@@ -448,7 +448,7 @@ export const TESTIMONIALS: Testimonial[] = [
 
 export const FAQS: FAQItem[] = [
   {
-    question: 'How secure is DocuFlow with my sensitive files?',
+    question: 'How secure is Naughty PDF with my sensitive files?',
     answer: 'Extremely secure. All uploads and transfers use premium TLS 1.3 encryption. Files stored in memory are encrypted with AES-256 and are automatically destroyed after 60 minutes. We do not inspect, retain, or train AI models with your content, and our architecture is GDPR, CCPA, and HIPAA compliant.'
   },
   {
@@ -460,7 +460,7 @@ export const FAQS: FAQItem[] = [
     answer: 'Our OCR scanner utilizes high-performance deep learning layout analysis models to identify paragraphs, structured data tables, signatures, and images. It automatically corrects document tilt and extracts text in over 180 languages, letting you export searchable PDFs or structured documents.'
   },
   {
-    question: 'Can I integrate DocuFlow directly into my team\'s existing workflows?',
+    question: 'Can I integrate Naughty PDF directly into my team\'s existing workflows?',
     answer: 'Absolutely. We offer direct, secure synchronization integrations with Google Drive, OneDrive, and Dropbox. Pro and Enterprise teams can easily import directly from their workspaces, batch-convert documents, and save output back to their cloud drives seamlessly.'
   },
   {
@@ -468,8 +468,8 @@ export const FAQS: FAQItem[] = [
     answer: 'Our layout engine matches font metrics, tables, margin boundaries, and image alignments to guarantee 99% formatting accuracy. Whether you convert standard Word files or custom presentation slides, they will look exactly as you designed them.'
   },
   {
-    question: 'Does DocuFlow support offline conversions?',
-    answer: 'DocuFlow is a browser-native web platform that processes complex conversions in high-performance cloud servers to maintain maximum speed. However, editing, signing, and lightweight PDF splitting/reordering are executed client-side, minimizing latency and bandwidth usage.'
+    question: 'Does Naughty PDF support offline conversions?',
+    answer: 'Naughty PDF is a browser-native web platform that processes complex conversions in high-performance cloud servers to maintain maximum speed. However, editing, signing, and lightweight PDF splitting/reordering are executed client-side, minimizing latency and bandwidth usage.'
   },
   {
     question: 'Can I split PDFs into custom page ranges?',

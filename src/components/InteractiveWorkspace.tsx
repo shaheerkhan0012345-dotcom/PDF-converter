@@ -128,7 +128,7 @@ export default function InteractiveWorkspace({ activeToolId, onToolChange, user 
     if (ocrExtractedText) {
       return ocrExtractedText;
     }
-    return `DOCUFLOW INTELLIGENT OCR SYSTEM
+    return `NAUGHTY PDF INTELLIGENT OCR SYSTEM
 --------------------------------------------------
 File: ${fileName}
 Extracted at: 2026-07-07 08:15 UTC
@@ -690,7 +690,7 @@ All document data processed under this agreement is governed by standard E2E AES
     <Table ss:DefaultRowHeight="20">
       <Column ss:Width="120" ss:Span="10"/>
       <Row ss:Height="30">
-        <Cell ss:StyleID="sTitle"><Data ss:Type="String">DocuFlow Spreadsheet Extraction Table</Data></Cell>
+        <Cell ss:StyleID="sTitle"><Data ss:Type="String">Naughty PDF Spreadsheet Extraction Table</Data></Cell>
       </Row>
       <Row ss:Height="20">
         <Cell ss:StyleID="sSubtitle"><Data ss:Type="String">Source: ${escapeHtml(firstFile.name)} • Processed on ${new Date().toLocaleDateString()}</Data></Cell>
@@ -834,7 +834,7 @@ All document data processed under this agreement is governed by standard E2E AES
           fontFace: "Segoe UI"
         });
 
-        coverSlide.addText("Pristine Presentation Deck  |  DocuFlow Office Conversion Engine", {
+        coverSlide.addText("Pristine Presentation Deck  |  Naughty PDF Office Conversion Engine", {
           x: 1.0,
           y: 3.5,
           w: "80%",
@@ -906,7 +906,7 @@ All document data processed under this agreement is governed by standard E2E AES
           }
 
           // Slide Footer
-          contentSlide.addText(`Slide ${idx + 1} of ${slidesData.length}  |  DocuFlow Office Conversion Engine`, {
+          contentSlide.addText(`Slide ${idx + 1} of ${slidesData.length}  |  Naughty PDF Office Conversion Engine`, {
             x: 0.8,
             y: 6.8,
             w: 11.5,
@@ -1015,7 +1015,7 @@ All document data processed under this agreement is governed by standard E2E AES
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DocuFlow HTML View: ${escapeHtml(firstFile.name)}</title>
+  <title>Naughty PDF HTML View: ${escapeHtml(firstFile.name)}</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
@@ -1030,7 +1030,7 @@ All document data processed under this agreement is governed by standard E2E AES
     <div class="p-6 border-b border-slate-800 flex items-center gap-3">
       <div class="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center text-white font-bold text-sm shadow-md">D</div>
       <div>
-        <h1 class="font-semibold text-sm leading-tight">DocuFlow Reader</h1>
+        <h1 class="font-semibold text-sm leading-tight">Naughty PDF Reader</h1>
         <p class="text-xs text-slate-400">PDF to Web App View</p>
       </div>
     </div>
@@ -1047,7 +1047,7 @@ All document data processed under this agreement is governed by standard E2E AES
 
         htmlDoc += `    </div>
     <div class="p-4 border-t border-slate-800 text-center">
-      <p class="text-[10px] text-slate-500">Converted with DocuFlow 2026</p>
+      <p class="text-[10px] text-slate-500">Converted with Naughty PDF 2026</p>
     </div>
   </aside>
 
@@ -1235,7 +1235,7 @@ All document data processed under this agreement is governed by standard E2E AES
             }
 
             if (!rawText || !rawText.trim()) {
-              rawText = `DocuFlow HTML-to-PDF Conversion Engine\n\nSource File: ${firstFile.name}\nGenerated: ${new Date().toLocaleString()}\n\nWarning: No explicit text content was discovered within the HTML body streams. The source HTML document structure has been securely parsed and compiled.`;
+              rawText = `Naughty PDF HTML-to-PDF Conversion Engine\n\nSource File: ${firstFile.name}\nGenerated: ${new Date().toLocaleString()}\n\nWarning: No explicit text content was discovered within the HTML body streams. The source HTML document structure has been securely parsed and compiled.`;
             }
             
             const doc = new jsPDF();
@@ -1316,7 +1316,7 @@ All document data processed under this agreement is governed by standard E2E AES
               
               doc.setFontSize(9);
               doc.setTextColor(100, 116, 139); // slate-500
-              doc.text(`Converted using DocuFlow Suite • ${new Date().toLocaleDateString()}`, 15, 32);
+              doc.text(`Converted using Naughty PDF Suite • ${new Date().toLocaleDateString()}`, 15, 32);
               
               doc.setDrawColor(226, 232, 240); // slate-200
               doc.line(15, 36, 195, 36);
@@ -1428,7 +1428,7 @@ All document data processed under this agreement is governed by standard E2E AES
               
               doc.setFontSize(9);
               doc.setTextColor(100, 116, 139); // slate-500
-              doc.text(`Sheet 1 Grid View • Converted with DocuFlow Suite`, 15, 26);
+              doc.text(`Sheet 1 Grid View • Converted with Naughty PDF Suite`, 15, 26);
               
               if (rowsData.length > 0) {
                 const startX = 15;
@@ -1557,7 +1557,7 @@ All document data processed under this agreement is governed by standard E2E AES
                   doc.rect(0, 195, 297, 15, "F");
                   doc.setFontSize(8);
                   doc.setTextColor(148, 163, 184);
-                  doc.text(`DocuFlow Suite Presentation Export  |  Slide ${sIdx + 1} of ${slideFiles.length}`, 15, 205);
+                  doc.text(`Naughty PDF Suite Presentation Export  |  Slide ${sIdx + 1} of ${slideFiles.length}`, 15, 205);
                   
                   let titleText = `Slide ${sIdx + 1}`;
                   let bodyBullets: string[] = [];
@@ -1614,7 +1614,7 @@ All document data processed under this agreement is governed by standard E2E AES
             
             doc.setFontSize(9);
             doc.setTextColor(100, 116, 139); // slate-500
-            doc.text(`Prisintely Formatted Sheet View • Converted with DocuFlow Suite`, 15, 26);
+            doc.text(`Prisintely Formatted Sheet View • Converted with Naughty PDF Suite`, 15, 26);
 
             const startX = 15;
             let currentY = 35;
@@ -1624,12 +1624,12 @@ All document data processed under this agreement is governed by standard E2E AES
 
             const dummyRows = [
               ["Transaction ID", "Billing Date", "Service Category", "Processor Name", "Debit Amount", "Invoice Status"],
-              ["TXN-94819", "2026-07-01", "Cloud App Storage Tier-B", "DocuFlow Compute Engine", "$120.00", "Settled"],
+              ["TXN-94819", "2026-07-01", "Cloud App Storage Tier-B", "Naughty PDF Compute Engine", "$120.00", "Settled"],
               ["TXN-94820", "2026-07-02", "Advanced OCR API Clusters", "Google Cloud Ingress", "$15.00", "Settled"],
               ["TXN-94821", "2026-07-03", "Acrobat Vector Rendering", "Adobe Distill Engine", "$4.50", "Pending"],
               ["TXN-94822", "2026-07-04", "PDF Conversion Node Cluster", "Antigravity Cloud", "$99.99", "Settled"],
               ["TXN-94823", "2026-07-05", "Encryption Keys Provision", "Firebase Vault Key", "$12.00", "Settled"],
-              ["TXN-94824", "2026-07-06", "Enterprise Support Matrix", "DocuFlow Priority Care", "$250.00", "Settled"],
+              ["TXN-94824", "2026-07-06", "Enterprise Support Matrix", "Naughty PDF Priority Care", "$250.00", "Settled"],
               ["TXN-94825", "2026-07-07", "Storage Database Replica", "Google Cloud SQL", "$180.00", "Settled"],
               ["TXN-94826", "2026-07-08", "Document Rendering License", "pdf-lib Core Client", "$30.00", "Settled"]
             ];
@@ -1679,7 +1679,7 @@ All document data processed under this agreement is governed by standard E2E AES
             doc.setFont("Helvetica", "normal");
             doc.setFontSize(12);
             doc.setTextColor(148, 163, 184);
-            doc.text("Pristine Presentation Deck  |  DocuFlow Office Conversion Engine", 30, 110);
+            doc.text("Pristine Presentation Deck  |  Naughty PDF Office Conversion Engine", 30, 110);
             
             doc.setFillColor(79, 70, 229); // Accent line
             doc.rect(30, 125, 120, 3, "F");
@@ -1753,7 +1753,7 @@ All document data processed under this agreement is governed by standard E2E AES
             doc.setFont("Helvetica", "normal");
             doc.setFontSize(9);
             doc.setTextColor(148, 163, 184);
-            doc.text(`Formal Business Report  •  Converted by DocuFlow Suite  •  ${new Date().toLocaleDateString()}`, 20, 37);
+            doc.text(`Formal Business Report  •  Converted by Naughty PDF Suite  •  ${new Date().toLocaleDateString()}`, 20, 37);
 
             doc.setDrawColor(226, 232, 240);
             doc.line(20, 42, 190, 42);
@@ -1788,7 +1788,7 @@ All document data processed under this agreement is governed by standard E2E AES
             doc.setFont("Helvetica", "normal");
             doc.setFontSize(10);
             doc.setTextColor(71, 85, 105);
-            doc.text("Approved under secure certificate protocols by the DocuFlow Ingress Office.", 20, paragraphY + 12);
+            doc.text("Approved under secure certificate protocols by the Naughty PDF Ingress Office.", 20, paragraphY + 12);
 
             doc.line(20, paragraphY + 30, 90, paragraphY + 30);
             doc.setFontSize(8);
@@ -1835,7 +1835,7 @@ All document data processed under this agreement is governed by standard E2E AES
         setFiles(prev => prev.map((f, idx) => idx === 0 ? {
           ...f,
           status: 'completed',
-          resultName: `docuflow_merged_${files.length}_files.pdf`,
+          resultName: `naughty_pdf_merged_${files.length}_files.pdf`,
           resultUrl
         } : f));
 
@@ -1950,7 +1950,7 @@ All document data processed under this agreement is governed by standard E2E AES
 
         setProcessingState("Applying permission flags...");
         setProcessingProgress(80);
-        pdf.setProducer("DocuFlow Security Engine");
+        pdf.setProducer("Naughty PDF Security Engine");
         pdf.setSubject(`Protected with password: ${protectPassword}`);
 
         const securedBytes = await pdf.save();
@@ -2109,7 +2109,7 @@ All document data processed under this agreement is governed by standard E2E AES
         setProcessingProgress(75);
 
         if (pages.length > 0) {
-          pages[0].drawText("Edited with DocuFlow Suite 2026", {
+          pages[0].drawText("Edited with Naughty PDF Suite 2026", {
             x: 20,
             y: pages[0].getSize().height - 40,
             size: 11,
@@ -2139,7 +2139,7 @@ All document data processed under this agreement is governed by standard E2E AES
 
         let outExt = 'pdf';
         let mimeType = 'application/pdf';
-        let textContent = 'DocuFlow Processing Suite - Action Completed successfully.';
+        let textContent = 'Naughty PDF Processing Suite - Action Completed successfully.';
 
         if (activeToolId.includes('to-word')) {
           outExt = 'docx';
@@ -2165,13 +2165,13 @@ All document data processed under this agreement is governed by standard E2E AES
           outExt = 'pdf';
         } else if (activeToolId === 'compare-pdf') {
           outExt = 'pdf';
-          textContent = `DocuFlow Compare Matrix Report\n--------------------------\nFile A: ${firstFile.name}\nDifferences Found: 0 visual layout drift, 0 font topology change.`;
+          textContent = `Naughty PDF Compare Matrix Report\n--------------------------\nFile A: ${firstFile.name}\nDifferences Found: 0 visual layout drift, 0 font topology change.`;
         } else if (activeToolId === 'page-numbers') {
           outExt = 'pdf';
         } else if (activeToolId === 'ai-pdf-assistant') {
           outExt = 'txt';
           mimeType = 'text/plain';
-          textContent = `DOCUFLOW INTUITION GEMINI ASSISTANT SUMMARY\n==========================================\nDocument: ${firstFile.name}\nKey Points:\n1. Structured layout flow is valid.\n2. Font topology metrics are highly optimized.\n3. Encryption is disabled.\n\nSummary: The document represents a standard business invoice or contract form with no security violations or malformed elements.`;
+          textContent = `NAUGHTY PDF INTUITION GEMINI ASSISTANT SUMMARY\n==========================================\nDocument: ${firstFile.name}\nKey Points:\n1. Structured layout flow is valid.\n2. Font topology metrics are highly optimized.\n3. Encryption is disabled.\n\nSummary: The document represents a standard business invoice or contract form with no security violations or malformed elements.`;
         }
 
         const dummyBlob = new Blob([textContent], { type: mimeType });
@@ -3205,59 +3205,52 @@ All document data processed under this agreement is governed by standard E2E AES
               initial={{ opacity: 0, scale: 0.98 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0 }}
-              className="w-full flex flex-col items-center justify-center p-6 text-center"
+              className="w-full flex flex-col items-center justify-center p-8 text-center"
             >
-              <div className="relative w-36 h-36 flex items-center justify-center mb-8">
-                {/* Spinners */}
-                <svg className="absolute w-full h-full transform -rotate-90">
+              <div className="relative w-28 h-28 flex items-center justify-center mb-6">
+                <svg className="absolute w-full h-full transform -rotate-90" viewBox="0 0 120 120">
                   <circle
-                    cx="72"
-                    cy="72"
-                    r="64"
-                    stroke="#E2E8F0"
-                    strokeWidth="4"
+                    cx="60"
+                    cy="60"
+                    r="52"
+                    stroke="#F1F5F9"
+                    strokeWidth="3.5"
                     fill="transparent"
                   />
                   <motion.circle
-                    cx="72"
-                    cy="72"
-                    r="64"
-                    stroke="url(#progressGradient)"
-                    strokeWidth="6"
+                    cx="60"
+                    cy="60"
+                    r="52"
+                    stroke="#4F46E5"
+                    strokeWidth="4"
                     fill="transparent"
-                    strokeDasharray={402}
-                    initial={{ strokeDashoffset: 402 }}
-                    animate={{ strokeDashoffset: 402 - (402 * processingProgress) / 100 }}
+                    strokeDasharray={326.7}
+                    initial={{ strokeDashoffset: 326.7 }}
+                    animate={{ strokeDashoffset: 326.7 - (326.7 * processingProgress) / 100 }}
                     transition={{ ease: "easeInOut" }}
                     strokeLinecap="round"
                   />
-                  <defs>
-                    <linearGradient id="progressGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#4F46E5" />
-                      <stop offset="100%" stopColor="#06B6D4" />
-                    </linearGradient>
-                  </defs>
                 </svg>
 
-                <div className="flex flex-col items-center justify-center bg-white w-28 h-28 rounded-full shadow-lg border border-brand-border/40">
-                  <span className="text-3xl font-mono font-black text-brand-text leading-tight">{processingProgress}%</span>
-                  <span className="text-[10px] text-brand-gray font-semibold uppercase tracking-wider">Securing</span>
+                <div className="flex flex-col items-center justify-center z-10">
+                  <span className="text-2xl font-mono font-bold text-brand-text leading-none">{processingProgress}%</span>
+                  <span className="text-[9px] text-brand-gray font-semibold uppercase tracking-widest mt-1">Progress</span>
                 </div>
               </div>
 
-              <div className="flex flex-col gap-1.5 max-w-sm">
-                <h4 className="font-display font-bold text-brand-text text-lg">
-                  DocuFlow Server Engines At Work
+              <div className="flex flex-col gap-1.5 max-w-sm mt-2">
+                <h4 className="font-display font-extrabold text-brand-text text-base tracking-tight">
+                  Naughty PDF Secure Engine
                 </h4>
                 
-                <div className="flex items-center justify-center gap-2 h-6 text-xs text-brand-primary font-mono font-semibold bg-brand-primary/5 border border-brand-primary/10 px-4 py-1 rounded-full w-fit mx-auto shadow-inner">
+                <div className="flex items-center justify-center gap-2 h-7 text-xs text-brand-primary font-mono font-semibold bg-brand-primary/5 border border-brand-primary/10 px-3.5 py-1 rounded-full w-fit mx-auto shadow-inner">
                   <Loader2 className="w-3.5 h-3.5 animate-spin text-brand-primary" />
                   <span className="truncate">{processingState}...</span>
                 </div>
               </div>
 
               {/* Secure guarantee warning subtext */}
-              <p className="text-[10px] text-brand-gray mt-10 max-w-xs leading-relaxed">
+              <p className="text-[10px] text-brand-gray mt-8 max-w-xs leading-relaxed">
                 Applying E2E encryption and layout matrix checks. Download will destroy cached files securely.
               </p>
             </motion.div>
@@ -3282,7 +3275,7 @@ All document data processed under this agreement is governed by standard E2E AES
                   Document Converted Successfully!
                 </h4>
                 <p className="text-sm text-brand-gray leading-relaxed mb-6">
-                  Ready for secure fetch. All cached records will be wiped from DocuFlow memory cells shortly.
+                  Ready for secure fetch. All cached records will be wiped from Naughty PDF memory cells shortly.
                 </p>
 
                 {/* Download Container */}

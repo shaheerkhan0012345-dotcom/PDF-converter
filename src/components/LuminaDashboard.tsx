@@ -205,7 +205,7 @@ export const LuminaDashboard: React.FC<LuminaDashboardProps> = ({ user, onToast 
               <FileText className="text-white w-5 h-5" />
             </div>
             <span className="font-display font-black text-xl tracking-tight text-brand-primary">
-              DocuFlow
+              Naughty PDF
             </span>
             {userData.isPremium ? (
               <span className="text-[10px] font-bold bg-brand-primary/10 text-brand-primary px-2.5 py-0.5 rounded-full select-none hidden sm:inline-block">
@@ -296,7 +296,7 @@ export const LuminaDashboard: React.FC<LuminaDashboardProps> = ({ user, onToast 
                       <div className="mb-3 pb-3 border-b border-brand-border/40">
                         <p className="text-[10px] font-bold text-brand-gray uppercase tracking-wider">Active User</p>
                         <p className="text-xs font-extrabold text-brand-text truncate mt-0.5">{displayName}</p>
-                        <p className="text-[10px] text-brand-gray font-semibold truncate mt-0.5">{user.email || 'guest@docuflow.com'}</p>
+                        <p className="text-[10px] text-brand-gray font-semibold truncate mt-0.5">{user.email || 'guest@naughty-pdf.com'}</p>
                       </div>
                       <button
                         onClick={() => {
@@ -461,7 +461,7 @@ export const LuminaDashboard: React.FC<LuminaDashboardProps> = ({ user, onToast 
                       <FileText className="text-white w-5 h-5" />
                     </div>
                     <span className="font-display font-black text-xl tracking-tight text-brand-primary">
-                      DocuFlow
+                      Naughty PDF
                     </span>
                   </div>
 
@@ -771,7 +771,7 @@ export const LuminaDashboard: React.FC<LuminaDashboardProps> = ({ user, onToast 
                     try {
                       const userDocRef = doc(db, 'users', user.uid);
                       await updateDoc(userDocRef, { isPremium: true });
-                      onToast("Successfully upgraded to DocuFlow Premium!");
+                      onToast("Successfully upgraded to Naughty PDF Premium!");
                       setShowUpgradeModal(false);
                     } catch (err) {
                       handleFirestoreError(err, OperationType.WRITE, `users/${user.uid}`);
