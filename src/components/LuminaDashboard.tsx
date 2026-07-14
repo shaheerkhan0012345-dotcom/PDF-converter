@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { User, signOut } from 'firebase/auth';
 import { auth, db, handleFirestoreError, OperationType } from '../firebase';
 import { doc, onSnapshot, setDoc, updateDoc } from 'firebase/firestore';
+import logoUrl from '../assets/images/naughty_pdf_logo_1784005750201.jpg';
 import { 
   LayoutDashboard, Minimize2, RefreshCw, Shield, Sparkles, 
   HelpCircle, Search, Bell, Settings, LogOut, ChevronDown, 
@@ -201,8 +202,8 @@ export const LuminaDashboard: React.FC<LuminaDashboardProps> = ({ user, onToast 
               <LayoutDashboard className="w-5 h-5" />
             </button>
 
-            <div className="w-9 h-9 bg-brand-primary rounded-xl flex items-center justify-center shadow-lg shadow-brand-primary/10">
-              <FileText className="text-white w-5 h-5" />
+            <div className="w-9 h-9 bg-white border border-brand-border/40 rounded-xl flex items-center justify-center shadow-md shadow-brand-primary/5 overflow-hidden">
+              <img src={logoUrl} alt="Naughty PDF Logo" className="w-7 h-7 object-contain" referrerPolicy="no-referrer" />
             </div>
             <span className="font-display font-black text-xl tracking-tight text-brand-primary">
               Naughty PDF
@@ -457,8 +458,8 @@ export const LuminaDashboard: React.FC<LuminaDashboardProps> = ({ user, onToast 
                 <div className="flex flex-col gap-6">
                   {/* Brand inside Mobile Drawer */}
                   <div className="flex items-center gap-3 pb-4 border-b border-brand-border/40">
-                    <div className="w-9 h-9 bg-brand-primary rounded-xl flex items-center justify-center">
-                      <FileText className="text-white w-5 h-5" />
+                    <div className="w-9 h-9 bg-white border border-brand-border/40 rounded-xl flex items-center justify-center overflow-hidden">
+                      <img src={logoUrl} alt="Naughty PDF Logo" className="w-7 h-7 object-contain" referrerPolicy="no-referrer" />
                     </div>
                     <span className="font-display font-black text-xl tracking-tight text-brand-primary">
                       Naughty PDF

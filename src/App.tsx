@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import logoUrl from './assets/images/naughty_pdf_logo_1784005750201.jpg';
 import { 
   FileText, FileDown, ScanLine, Combine, Scissors, FileEdit, 
   Image as ImageIcon, Minimize2, Lock, Unlock, RotateCw, Stamp, 
@@ -30,6 +31,7 @@ export default function App() {
   // Auth and loading states
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
+  const [loadingProgress, setLoadingProgress] = useState(0);
   const [authModalOpen, setAuthModalOpen] = useState(false);
   const [authModalInitialSignUp, setAuthModalInitialSignUp] = useState(false);
   const [userDropdownOpen, setUserDropdownOpen] = useState(false);
@@ -41,18 +43,40 @@ export default function App() {
 
   // Sync auth state and manage loading
   useEffect(() => {
-    let initialChecked = false;
+    const interval = setInterval(() => {
+      setLoadingProgress(prev => {
+        if (prev >= 100) {
+          clearInterval(interval);
+          return 100;
+        }
+        const step = Math.floor(Math.random() * 12) + 8;
+        const nextVal = prev + step;
+        if (nextVal >= 100) {
+          clearInterval(interval);
+          return 100;
+        }
+        return nextVal;
+      });
+    }, 100);
+
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      if (!initialChecked) {
-        initialChecked = true;
-        setTimeout(() => {
-          setLoading(false);
-        }, 1200);
-      }
     });
-    return () => unsubscribe();
+
+    return () => {
+      clearInterval(interval);
+      unsubscribe();
+    };
   }, []);
+
+  useEffect(() => {
+    if (loadingProgress === 100) {
+      const timer = setTimeout(() => {
+        setLoading(false);
+      }, 400);
+      return () => clearTimeout(timer);
+    }
+  }, [loadingProgress]);
 
   // Monitor scrolling to style header
   useEffect(() => {
@@ -120,6 +144,14 @@ export default function App() {
     return <Comp className={className} />;
   };
 
+  const getLoadingStatusLabel = (progress: number) => {
+    if (progress < 25) return "Establishing Secure 256-Bit Tunnel...";
+    if (progress < 50) return "Syncing Vault Security Keys...";
+    if (progress < 75) return "Loading PDF.js WebAssembly Workers...";
+    if (progress < 100) return "Compiling Client-Side Engines...";
+    return "Workspace Ready!";
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen bg-brand-bg flex flex-col items-center justify-center selection:bg-brand-primary selection:text-white relative overflow-hidden">
@@ -127,47 +159,45 @@ export default function App() {
         <div className="absolute inset-0 mesh-gradient opacity-60 -z-10"></div>
         
         <motion.div
-          initial={{ opacity: 0, y: 10 }}
+          initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
-          className="flex flex-col items-center"
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="flex flex-col items-center w-full max-w-sm px-6"
         >
           {/* Animated Icon Ring */}
-          <div className="relative flex items-center justify-center w-16 h-16 rounded-2xl bg-white border border-brand-border/40 shadow-[0_8px_30px_rgb(0,0,0,0.04)] mb-4">
+          <div className="relative flex items-center justify-center w-20 h-20 rounded-3xl bg-white border border-brand-border/40 shadow-[0_8px_30px_rgb(0,0,0,0.04)] mb-6">
             <motion.div 
-              className="absolute inset-0 rounded-2xl bg-brand-primary/5"
+              className="absolute inset-0 rounded-3xl bg-brand-primary/5"
               animate={{ scale: [1, 1.15, 1] }}
               transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
             />
-            <div className="w-10 h-10 rounded-xl bg-brand-primary flex items-center justify-center shadow-lg shadow-brand-primary/25 z-10">
-              <FileText className="text-white w-5 h-5 stroke-[2.2px]" />
+            <div className="w-12 h-12 rounded-2xl bg-white flex items-center justify-center border border-brand-border/40 shadow-lg shadow-brand-primary/5 z-10 overflow-hidden">
+              <img src={logoUrl} alt="Naughty PDF Logo" className="w-10 h-10 object-contain" referrerPolicy="no-referrer" />
             </div>
           </div>
 
           {/* Brand Wordmark */}
-          <span className="font-display font-extrabold text-2xl tracking-tight text-brand-text">
+          <span className="font-display font-extrabold text-3xl tracking-tight text-brand-text mb-1">
             Naughty PDF<span className="text-brand-primary">.</span>
           </span>
+          
+          <span className="text-[10px] text-brand-gray font-mono font-bold tracking-widest uppercase mb-6 opacity-75">
+            Document Intelligence Suite
+          </span>
 
-          {/* Infinite marquee loader */}
-          <div className="w-24 h-1 bg-slate-200/60 rounded-full overflow-hidden mt-4 relative">
-            <motion.div 
-              className="absolute top-0 bottom-0 left-0 bg-brand-primary rounded-full w-[40%]"
-              animate={{ 
-                x: ["-100%", "250%"] 
-              }}
-              transition={{ 
-                repeat: Infinity, 
-                duration: 1.4, 
-                ease: "easeInOut" 
-              }}
+          {/* Glowing Progress Slider Container */}
+          <div className="w-full bg-slate-200/50 rounded-full h-1.5 overflow-hidden relative mb-3">
+            <div 
+              className="h-full bg-brand-primary rounded-full transition-all duration-150 shadow-[0_0_12px_rgba(59,130,246,0.5)]"
+              style={{ width: `${loadingProgress}%` }}
             />
           </div>
 
-          {/* Subtext */}
-          <span className="text-[9px] text-brand-gray font-mono font-bold tracking-widest uppercase mt-3.5 opacity-80">
-            Initializing Workspace
-          </span>
+          {/* Progress stats and label */}
+          <div className="w-full flex items-center justify-between text-xs font-semibold text-brand-gray/80 px-0.5">
+            <span className="font-mono">{getLoadingStatusLabel(loadingProgress)}</span>
+            <span className="font-mono text-brand-text font-bold">{loadingProgress}%</span>
+          </div>
         </motion.div>
       </div>
     );
@@ -238,8 +268,8 @@ export default function App() {
         <div className="max-w-[1320px] mx-auto px-6 flex items-center justify-between">
           {/* Logo */}
           <a href="#" className="flex items-center gap-2.5 hover:opacity-90 transition-opacity">
-            <div className="w-9 h-9 bg-brand-primary text-white rounded-xl flex items-center justify-center shadow-lg shadow-brand-primary/20">
-              <FileCheck className="w-5 h-5 stroke-[2.5px]" />
+            <div className="w-9 h-9 bg-white border border-brand-border/40 text-white rounded-xl flex items-center justify-center shadow-lg shadow-brand-primary/5 overflow-hidden">
+              <img src={logoUrl} alt="Naughty PDF Logo" className="w-7 h-7 object-contain" referrerPolicy="no-referrer" />
             </div>
             <span className="font-display font-extrabold text-xl tracking-tight text-brand-text">
               Naughty PDF<span className="text-brand-primary">.</span>
@@ -1195,8 +1225,8 @@ export default function App() {
           
           <div className="md:col-span-5 flex flex-col items-start gap-4 text-left">
             <a href="#" className="flex items-center gap-2.5 hover:opacity-90 transition-opacity mb-2">
-              <div className="w-8 h-8 bg-brand-primary text-white rounded-lg flex items-center justify-center shadow-lg shadow-brand-primary/20">
-                <FileCheck className="w-4.5 h-4.5 stroke-[2.5px]" />
+              <div className="w-8 h-8 bg-white text-white rounded-lg flex items-center justify-center shadow-lg shadow-brand-primary/10 overflow-hidden">
+                <img src={logoUrl} alt="Naughty PDF Logo" className="w-6.5 h-6.5 object-contain" referrerPolicy="no-referrer" />
               </div>
               <span className="font-display font-extrabold text-lg tracking-tight text-white">
                 Naughty PDF<span className="text-brand-primary">.</span>
