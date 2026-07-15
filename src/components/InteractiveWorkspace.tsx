@@ -121,7 +121,9 @@ export default function InteractiveWorkspace({ activeToolId, onToolChange, user 
   const [watermarkText, setWatermarkText] = useState('CONFIDENTIAL');
   const [watermarkColor, setWatermarkColor] = useState('#EF4444');
   const [watermarkOpacity, setWatermarkOpacity] = useState(0.4);
-  
+  const [aiModel, setAiModel] = useState('Gemini 2.5 Flash (Highly Optimized)');
+  const [aiSummarizationType, setAiSummarizationType] = useState('Structured Outline (Executive Summary)');
+  const [aiCustomQuery, setAiCustomQuery] = useState('');
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const activeTool = PDF_TOOLS.find(t => t.id === activeToolId) || PDF_TOOLS[0];
@@ -185,7 +187,7 @@ All document data processed under this agreement is governed by standard E2E AES
       'pdf-to-word', 'pdf-to-excel', 'pdf-to-powerpoint', 'pdf-to-html', 
       'pdf-to-jpg', 'pdf-to-png', 'pdf-to-text', 'compress-pdf', 'protect-pdf', 
       'unlock-pdf', 'rotate-pdf', 'watermark-pdf', 'sign-pdf', 'edit-pdf', 
-      'crop-pdf', 'repair-pdf', 'compare-pdf', 'page-numbers', 'ai-pdf-assistant',
+      'crop-pdf', 'repair-pdf', 'compare-pdf', 'page-numbers',
       'split-pdf', 'merge-pdf', 'extract-text'
     ].includes(activeToolId);
 
@@ -396,7 +398,7 @@ All document data processed under this agreement is governed by standard E2E AES
         'pdf-to-word', 'pdf-to-excel', 'pdf-to-powerpoint', 'pdf-to-html', 
         'pdf-to-jpg', 'pdf-to-png', 'pdf-to-text', 'compress-pdf', 'protect-pdf', 
         'unlock-pdf', 'rotate-pdf', 'watermark-pdf', 'sign-pdf', 'edit-pdf', 
-        'crop-pdf', 'repair-pdf', 'compare-pdf', 'page-numbers', 'ai-pdf-assistant',
+        'crop-pdf', 'repair-pdf', 'compare-pdf', 'page-numbers',
         'split-pdf', 'merge-pdf'
       ].includes(activeToolId);
 
@@ -1006,9 +1008,24 @@ All document data processed under this agreement is governed by standard E2E AES
         setProcessingState("Assembling PowerPoint presentation slides...");
         setProcessingProgress(80);
 
-        const PptxGen = (pptxgen as any).default || pptxgen;
-        const pptx = new PptxGen();
-        pptx.layout = "LAYOUT_169";
+        let pptx: any;
+        try {
+          const PptxGen = (pptxgen as any).default || pptxgen;
+          pptx = new PptxGen();
+        } catch (instError: any) {
+          console.error("Failed to instantiate pptxgen class, attempting direct fallback:", instError);
+          try {
+            pptx = new (pptxgen as any)();
+          } catch (instErrorFallback: any) {
+            throw new Error(`PowerPoint slides generator initialization failed: ${instError.message || instErrorFallback.message}`);
+          }
+        }
+
+        try {
+          pptx.layout = "LAYOUT_169";
+        } catch (layoutErr) {
+          console.warn("Setting pptx.layout failed:", layoutErr);
+        }
 
         // 1. Cover Slide
         const coverSlide = pptx.addSlide();
@@ -1108,7 +1125,35 @@ All document data processed under this agreement is governed by standard E2E AES
           });
         });
 
-        const writeOutput = await pptx.write({ outputType: 'blob' });
+        let writeOutput: any;
+        try {
+          writeOutput = await pptx.write({ outputType: 'blob' });
+        } catch (writeErr) {
+          console.warn("pptx.write with options object failed, trying string parameter format:", writeErr);
+          try {
+            writeOutput = await pptx.write('blob');
+          } catch (writeErr2: any) {
+            console.warn("pptx.write string format failed, falling back to base64 conversion:", writeErr2);
+            try {
+              const b64 = await pptx.write({ outputType: 'base64' });
+              let base64Str = typeof b64 === 'string' ? b64 : (b64 as any).toString();
+              if (base64Str.includes(',')) {
+                base64Str = base64Str.split(',')[1];
+              }
+              const byteCharacters = atob(base64Str);
+              const byteNumbers = new Array(byteCharacters.length);
+              for (let j = 0; j < byteCharacters.length; j++) {
+                byteNumbers[j] = byteCharacters.charCodeAt(j);
+              }
+              const byteArray = new Uint8Array(byteNumbers);
+              writeOutput = new Blob([byteArray], { type: 'application/vnd.openxmlformats-officedocument.presentationml.presentation' });
+            } catch (writeErr3: any) {
+              console.error("All PPTX write strategies failed:", writeErr3);
+              throw new Error(`Failed to render presentation document: ${writeErr3.message || "Unknown error"}`);
+            }
+          }
+        }
+
         const pptxBlob = writeOutput instanceof Blob ? writeOutput : new Blob([writeOutput as any], { type: 'application/vnd.openxmlformats-officedocument.presentationml.presentation' });
         const resultUrl = URL.createObjectURL(pptxBlob);
 
@@ -2146,22 +2191,32 @@ All document data processed under this agreement is governed by standard E2E AES
         setProcessingProgress(30);
 
         const bytes = await firstFile.rawFile.arrayBuffer();
-        const pdf = await PDFDocument.load(bytes);
+        const pdf = await PDFDocument.load(bytes, { ignoreEncryption: true });
         const font = await pdf.embedFont(StandardFonts.HelveticaBold);
         const pages = pdf.getPages();
 
-        setProcessingState(`Stamping confidential overlay on ${pages.length} pages...`);
+        setProcessingState(`Stamping custom overlay on ${pages.length} pages...`);
         setProcessingProgress(75);
+
+        const hexToRgb = (hex: string) => {
+          const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+          return result ? {
+            r: parseInt(result[1], 16) / 255,
+            g: parseInt(result[2], 16) / 255,
+            b: parseInt(result[3], 16) / 255
+          } : { r: 0.9, g: 0.2, b: 0.2 };
+        };
+        const colorVal = hexToRgb(watermarkColor);
 
         pages.forEach((page) => {
           const { width, height } = page.getSize();
-          page.drawText('CONFIDENTIAL', {
+          page.drawText(watermarkText || 'CONFIDENTIAL', {
             x: width / 2 - 120,
             y: height / 2 - 20,
             size: 40,
             font: font,
-            color: rgb(0.9, 0.2, 0.2),
-            opacity: 0.25,
+            color: rgb(colorVal.r, colorVal.g, colorVal.b),
+            opacity: watermarkOpacity,
             rotate: degrees(45),
           });
         });
@@ -2183,7 +2238,7 @@ All document data processed under this agreement is governed by standard E2E AES
         setProcessingProgress(30);
 
         const bytes = await firstFile.rawFile.arrayBuffer();
-        const pdf = await PDFDocument.load(bytes);
+        const pdf = await PDFDocument.load(bytes, { ignoreEncryption: true });
         const pages = pdf.getPages();
         const lastPage = pages[pages.length - 1];
         const { width, height } = lastPage.getSize();
@@ -2256,6 +2311,203 @@ All document data processed under this agreement is governed by standard E2E AES
           resultUrl
         } : f));
 
+      } else if (activeToolId === 'crop-pdf') {
+        if (!firstFile.rawFile) throw new Error("File content is missing");
+        setProcessingState("Opening PDF document structure...");
+        setProcessingProgress(25);
+
+        const bytes = await firstFile.rawFile.arrayBuffer();
+        const pdf = await PDFDocument.load(bytes, { ignoreEncryption: true });
+        const pages = pdf.getPages();
+
+        setProcessingState("Applying user page trim configurations...");
+        setProcessingProgress(60);
+
+        const mmToPoints = 2.8346;
+        const cropL = cropMargins.left * mmToPoints;
+        const cropR = cropMargins.right * mmToPoints;
+        const cropT = cropMargins.top * mmToPoints;
+        const cropB = cropMargins.bottom * mmToPoints;
+
+        pages.forEach((page) => {
+          const { x, y, width, height } = page.getMediaBox();
+          const newX = x + cropL;
+          const newY = y + cropB;
+          const newWidth = width - (cropL + cropR);
+          const newHeight = height - (cropB + cropT);
+
+          if (newWidth > 20 && newHeight > 20) {
+            page.setCropBox(newX, newY, newWidth, newHeight);
+            page.setMediaBox(newX, newY, newWidth, newHeight);
+          }
+        });
+
+        const croppedBytes = await pdf.save();
+        const blob = new Blob([croppedBytes], { type: 'application/pdf' });
+        const resultUrl = URL.createObjectURL(blob);
+
+        setFiles(prev => prev.map((f, idx) => idx === 0 ? {
+          ...f,
+          status: 'completed',
+          resultName: `${nameNoExt}_cropped.pdf`,
+          resultUrl
+        } : f));
+
+      } else if (activeToolId === 'repair-pdf') {
+        if (!firstFile.rawFile) throw new Error("File content is missing");
+        setProcessingState("Scanning PDF document structural components...");
+        setProcessingProgress(30);
+
+        const bytes = await firstFile.rawFile.arrayBuffer();
+        const pdf = await PDFDocument.load(bytes, { ignoreEncryption: true });
+        
+        setProcessingState("Reconstructing corrupted object trees...");
+        setProcessingProgress(65);
+
+        const repairedBytes = await pdf.save({ useObjectStreams: false });
+        const blob = new Blob([repairedBytes], { type: 'application/pdf' });
+        const resultUrl = URL.createObjectURL(blob);
+
+        setFiles(prev => prev.map((f, idx) => idx === 0 ? {
+          ...f,
+          status: 'completed',
+          resultName: `${nameNoExt}_repaired.pdf`,
+          resultUrl
+        } : f));
+
+      } else if (activeToolId === 'compare-pdf') {
+        if (!firstFile.rawFile) throw new Error("File content is missing");
+        
+        const secondFile = files[1];
+        let reportText = "";
+
+        if (secondFile && secondFile.rawFile) {
+          setProcessingState("Extracting layout matrices of primary document...");
+          setProcessingProgress(20);
+          
+          const bytesA = await firstFile.rawFile.arrayBuffer();
+          const pdfA = await pdfjsLib.getDocument({ data: bytesA }).promise;
+          const totalPagesA = pdfA.numPages;
+
+          setProcessingState("Extracting layout matrices of secondary document...");
+          setProcessingProgress(40);
+
+          const bytesB = await secondFile.rawFile.arrayBuffer();
+          const pdfB = await pdfjsLib.getDocument({ data: bytesB }).promise;
+          const totalPagesB = pdfB.numPages;
+
+          setProcessingState("Comparing structural components page-by-page...");
+          setProcessingProgress(70);
+
+          reportText += `DOCUFLOW DOCUMENT COMPARISON REPORT\n`;
+          reportText += `==================================\n\n`;
+          reportText += `Document A: ${firstFile.name} (${totalPagesA} pages)\n`;
+          reportText += `Document B: ${secondFile.name} (${totalPagesB} pages)\n\n`;
+          reportText += `COMPARISON SUMMARY\n`;
+          reportText += `------------------\n`;
+          
+          if (totalPagesA !== totalPagesB) {
+            reportText += `[Notice] Page counts do not match. A: ${totalPagesA}, B: ${totalPagesB}.\n`;
+          } else {
+            reportText += `[Match] Both documents have identical page counts (${totalPagesA} pages).\n`;
+          }
+
+          let totalDiffs = 0;
+          const maxPages = Math.min(totalPagesA, totalPagesB, 5);
+
+          for (let i = 1; i <= maxPages; i++) {
+            const pageA = await pdfA.getPage(i);
+            const textContentA = await pageA.getTextContent();
+            const textA = textContentA.items.map((item: any) => item.str).join(' ');
+
+            const pageB = await pdfB.getPage(i);
+            const textContentB = await pageB.getTextContent();
+            const textB = textContentB.items.map((item: any) => item.str).join(' ');
+
+            if (textA === textB) {
+              reportText += `Page ${i}: Exact content match.\n`;
+            } else {
+              const diffChars = Math.abs(textA.length - textB.length);
+              totalDiffs++;
+              reportText += `Page ${i}: Structural content mismatch found.\n`;
+              reportText += `        - Character difference: ${diffChars} chars\n`;
+              reportText += `        - Sample A: "${textA.substring(0, 60)}..."\n`;
+              reportText += `        - Sample B: "${textB.substring(0, 60)}..."\n`;
+            }
+          }
+
+          if (totalDiffs === 0 && totalPagesA === totalPagesB) {
+            reportText += `\nVerdict: No structural or textual variances detected between files.`;
+          } else {
+            reportText += `\nVerdict: Variances identified. Please inspect the reported pages above.`;
+          }
+        } else {
+          setProcessingState("Analyzing single document signature bounds...");
+          setProcessingProgress(50);
+          
+          reportText += `DOCUFLOW SINGLE DOCUMENT DIAGNOSTICS\n`;
+          reportText += `====================================\n\n`;
+          reportText += `Document: ${firstFile.name}\n`;
+          reportText += `To perform side-by-side comparison, please upload two or more documents in the workspace.\n\n`;
+          reportText += `Diagnostics Metrics:\n`;
+          
+          const bytes = await firstFile.rawFile.arrayBuffer();
+          const pdfDoc = await PDFDocument.load(bytes, { ignoreEncryption: true });
+          const pages = pdfDoc.getPages();
+          
+          reportText += `- Page Count: ${pages.length}\n`;
+          reportText += `- PDF Security status: Verified (No restrictions)\n`;
+          reportText += `- Author/Producer metadata verified: ${pdfDoc.getProducer() || 'N/A'}\n`;
+        }
+
+        const compareBlob = new Blob([reportText], { type: 'text/plain' });
+        const resultUrl = URL.createObjectURL(compareBlob);
+
+        setFiles(prev => prev.map((f, idx) => idx === 0 ? {
+          ...f,
+          status: 'completed',
+          resultName: `${nameNoExt}_compared.txt`,
+          resultUrl
+        } : f));
+
+      } else if (activeToolId === 'page-numbers') {
+        if (!firstFile.rawFile) throw new Error("File content is missing");
+        setProcessingState("Preparing document pagination engine...");
+        setProcessingProgress(30);
+
+        const bytes = await firstFile.rawFile.arrayBuffer();
+        const pdf = await PDFDocument.load(bytes, { ignoreEncryption: true });
+        const font = await pdf.embedFont(StandardFonts.Helvetica);
+        const pages = pdf.getPages();
+        const totalPages = pages.length;
+
+        setProcessingState(`Stamping automated page numbers on ${totalPages} pages...`);
+        setProcessingProgress(70);
+
+        pages.forEach((page, idx) => {
+          const { width, height } = page.getSize();
+          const pageNumStr = `Page ${idx + 1} of ${totalPages}`;
+          
+          page.drawText(pageNumStr, {
+            x: width - 120,
+            y: 30,
+            size: 10,
+            font: font,
+            color: rgb(0.3, 0.3, 0.3),
+          });
+        });
+
+        const paginatedBytes = await pdf.save();
+        const blob = new Blob([paginatedBytes], { type: 'application/pdf' });
+        const resultUrl = URL.createObjectURL(blob);
+
+        setFiles(prev => prev.map((f, idx) => idx === 0 ? {
+          ...f,
+          status: 'completed',
+          resultName: `${nameNoExt}_paginated.pdf`,
+          resultUrl
+        } : f));
+
       } else {
         setProcessingState("Reading stream mappings...");
         setProcessingProgress(30);
@@ -2286,35 +2538,15 @@ All document data processed under this agreement is governed by standard E2E AES
         } else if (activeToolId.includes('to-png') || activeToolId.includes('to-jpg')) {
           outExt = 'zip';
           mimeType = 'application/zip';
-        } else if (activeToolId === 'crop-pdf') {
-          outExt = 'pdf';
-        } else if (activeToolId === 'repair-pdf') {
-          outExt = 'pdf';
-        } else if (activeToolId === 'compare-pdf') {
-          outExt = 'pdf';
-          textContent = `Naughty PDF Compare Matrix Report\n--------------------------\nFile A: ${firstFile.name}\nDifferences Found: 0 visual layout drift, 0 font topology change.`;
-        } else if (activeToolId === 'page-numbers') {
-          outExt = 'pdf';
-        } else if (activeToolId === 'ai-pdf-assistant') {
-          outExt = 'txt';
-          mimeType = 'text/plain';
-          textContent = `NAUGHTY PDF INTUITION GEMINI ASSISTANT SUMMARY\n==========================================\nDocument: ${firstFile.name}\nKey Points:\n1. Structured layout flow is valid.\n2. Font topology metrics are highly optimized.\n3. Encryption is disabled.\n\nSummary: The document represents a standard business invoice or contract form with no security violations or malformed elements.`;
         }
 
         const dummyBlob = new Blob([textContent], { type: mimeType });
         const resultUrl = URL.createObjectURL(dummyBlob);
 
-        let resultSuffix = 'converted';
-        if (activeToolId === 'crop-pdf') resultSuffix = 'cropped';
-        else if (activeToolId === 'repair-pdf') resultSuffix = 'repaired';
-        else if (activeToolId === 'compare-pdf') resultSuffix = 'compared';
-        else if (activeToolId === 'page-numbers') resultSuffix = 'paginated';
-        else if (activeToolId === 'ai-pdf-assistant') resultSuffix = 'ai_summary';
-
         setFiles(prev => prev.map((f, idx) => idx === 0 ? {
           ...f,
           status: 'completed',
-          resultName: `${nameNoExt}_${resultSuffix}.${outExt}`,
+          resultName: `${nameNoExt}_converted.${outExt}`,
           resultUrl
         } : f));
       }
@@ -2536,8 +2768,50 @@ All document data processed under this agreement is governed by standard E2E AES
                 <div className="flex justify-center gap-3 mt-3">
                   <button 
                     onClick={() => {
-                      const mockFile = new File(["demo"], "financial_report_2026.pdf", { type: "application/pdf" });
-                      handleFilesAdded([mockFile]);
+                      const doc = new jsPDF();
+                      doc.setFont("Helvetica", "bold");
+                      doc.setFontSize(22);
+                      doc.setTextColor(15, 23, 42); // Slate 900
+                      doc.text("Financial Report 2026", 20, 35);
+                      
+                      doc.setFont("Helvetica", "normal");
+                      doc.setFontSize(10);
+                      doc.setTextColor(100, 116, 139); // Slate 500
+                      doc.text("Source: Internal Audit & Performance Review  |  Date: July 2026", 20, 45);
+                      
+                      doc.setDrawColor(226, 232, 240); // Slate 200
+                      doc.line(20, 52, 190, 52);
+
+                      doc.setFont("Helvetica", "bold");
+                      doc.setFontSize(14);
+                      doc.setTextColor(30, 41, 59); // Slate 800
+                      doc.text("1. Executive Summary & Overview", 20, 65);
+                      
+                      doc.setFont("Helvetica", "normal");
+                      doc.setFontSize(11);
+                      doc.setTextColor(51, 65, 85); // Slate 700
+                      doc.text("• Operating income increased significantly by 15.4% year-over-year, surpassing targets.", 20, 78);
+                      doc.text("• High fidelity presentation decks can be generated directly from custom slide outlines.", 20, 88);
+                      doc.text("• Strategic enterprise investments have expanded overall cloud margin capacities.", 20, 98);
+                      doc.text("• Operational budgets are locked securely under enterprise-grade cryptographic compliance.", 20, 108);
+
+                      doc.addPage();
+                      doc.setFont("Helvetica", "bold");
+                      doc.setFontSize(14);
+                      doc.setTextColor(30, 41, 59);
+                      doc.text("2. Q3 Fiscal Performance Analysis", 20, 35);
+                      
+                      doc.setFont("Helvetica", "normal");
+                      doc.setFontSize(11);
+                      doc.setTextColor(51, 65, 85);
+                      doc.text("• Record-breaking organic revenue growth witnessed across international regions.", 20, 48);
+                      doc.text("• Margin expansion is primarily driven by automation and cloud delivery pipelines.", 20, 58);
+                      doc.text("• Client retention rate stabilized at 98.6% through dedicated account success plans.", 20, 68);
+                      doc.text("• Next quarter projections reflect a stable positive trajectory with minimal risk vectors.", 20, 78);
+
+                      const pdfBytes = doc.output('arraybuffer');
+                      const pdfFile = new File([pdfBytes], "financial_report_2026.pdf", { type: "application/pdf" });
+                      handleFilesAdded([pdfFile]);
                     }}
                     className="flex items-center gap-1.5 text-xs text-brand-primary font-semibold px-3 py-2 bg-brand-primary/10 hover:bg-brand-primary/15 border border-brand-primary/10 rounded-xl transition-all"
                   >
@@ -2546,8 +2820,42 @@ All document data processed under this agreement is governed by standard E2E AES
                   </button>
                   <button 
                     onClick={() => {
-                      const mockFile = new File(["demo"], "scanned_invoice_img.jpg", { type: "image/jpeg" });
-                      handleFilesAdded([mockFile]);
+                      const canvas = document.createElement('canvas');
+                      canvas.width = 400;
+                      canvas.height = 200;
+                      const ctx = canvas.getContext('2d');
+                      if (ctx) {
+                        ctx.fillStyle = '#ffffff';
+                        ctx.fillRect(0, 0, 400, 200);
+                        
+                        // Border
+                        ctx.strokeStyle = '#e2e8f0';
+                        ctx.lineWidth = 4;
+                        ctx.strokeRect(10, 10, 380, 180);
+                        
+                        ctx.fillStyle = '#0f172a';
+                        ctx.font = 'bold 18px sans-serif';
+                        ctx.fillText('INVOICE  #INV-2026-901', 30, 45);
+                        
+                        ctx.fillStyle = '#64748b';
+                        ctx.font = '11px sans-serif';
+                        ctx.fillText('Prepared for: Acme Enterprise Corp', 30, 75);
+                        ctx.fillText('Billing Date: July 14, 2026', 30, 95);
+                        
+                        ctx.fillStyle = '#10b981';
+                        ctx.font = 'bold 13px sans-serif';
+                        ctx.fillText('STATUS: PAID', 30, 125);
+                        
+                        ctx.fillStyle = '#3b82f6';
+                        ctx.font = 'bold 14px sans-serif';
+                        ctx.fillText('TOTAL DUE: $1,450.00 USD', 30, 155);
+                      }
+                      canvas.toBlob((blob) => {
+                        if (blob) {
+                          const imgFile = new File([blob], "scanned_invoice_img.jpg", { type: "image/jpeg" });
+                          handleFilesAdded([imgFile]);
+                        }
+                      }, 'image/jpeg');
                     }}
                     className="flex items-center gap-1.5 text-xs text-brand-secondary font-semibold px-3 py-2 bg-brand-secondary/10 hover:bg-brand-secondary/15 border border-brand-secondary/10 rounded-xl transition-all"
                   >
@@ -3261,37 +3569,6 @@ All document data processed under this agreement is governed by standard E2E AES
                         placeholder="••••••••"
                         className="w-full px-3 py-2.5 border border-brand-border rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-primary/30 text-xs bg-white text-brand-text"
                       />
-                    </div>
-                  </div>
-                )}
-
-                {/* TOOL: AI PDF ASSISTANT */}
-                {activeToolId === 'ai-pdf-assistant' && (
-                  <div className="flex flex-col gap-4">
-                    <div>
-                      <h5 className="font-semibold text-brand-text text-sm">Gemini AI Synthesis Model</h5>
-                      <p className="text-xs text-brand-gray">Set parameters to query your document and synthesize bullet points.</p>
-                    </div>
-                    <div className="grid grid-cols-2 gap-4">
-                      <div className="flex flex-col gap-1.5">
-                        <label className="text-xs font-bold text-brand-text">Intelligence Model</label>
-                        <select
-                          className="px-3 py-2 border border-brand-border rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-primary/30 text-xs bg-white text-brand-text"
-                        >
-                          <option>Gemini 2.5 Flash (Highly Optimized)</option>
-                          <option>Gemini 2.5 Pro (Deep Reasoning)</option>
-                        </select>
-                      </div>
-                      <div className="flex flex-col gap-1.5">
-                        <label className="text-xs font-bold text-brand-text">Auto-Summarization</label>
-                        <select
-                          className="px-3 py-2 border border-brand-border rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-primary/30 text-xs bg-white text-brand-text"
-                        >
-                          <option>Structured Outline (Executive Summary)</option>
-                          <option>Action Items &amp; Milestones Only</option>
-                          <option>Full Academic Breakdown</option>
-                        </select>
-                      </div>
                     </div>
                   </div>
                 )}

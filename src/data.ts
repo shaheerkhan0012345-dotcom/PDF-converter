@@ -343,17 +343,6 @@ export const PDF_TOOLS: PDFTool[] = [
     color: 'bg-fuchsia-100 text-fuchsia-600 border-fuchsia-200/40 hover:bg-fuchsia-200/20',
     colorClass: 'text-fuchsia-600',
     bgClass: 'bg-fuchsia-500/10'
-  },
-  {
-    id: 'ai-pdf-assistant',
-    name: 'AI PDF Assistant',
-    description: 'Engage with Gemini intelligence models to query and summarize reports.',
-    icon: 'Sparkles',
-    category: 'ai',
-    badge: 'Pro Model',
-    color: 'bg-indigo-600 text-white border-indigo-700/40 hover:bg-indigo-700/90',
-    colorClass: 'text-indigo-600',
-    bgClass: 'bg-indigo-500/10'
   }
 ];
 
