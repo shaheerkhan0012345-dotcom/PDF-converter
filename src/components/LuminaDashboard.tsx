@@ -202,8 +202,8 @@ export const LuminaDashboard: React.FC<LuminaDashboardProps> = ({ user, onToast 
               <LayoutDashboard className="w-5 h-5" />
             </button>
 
-            <div className="w-9 h-9 bg-white border border-brand-border/40 rounded-xl flex items-center justify-center shadow-md shadow-brand-primary/5 overflow-hidden">
-              <img src={logoUrl} alt="DocuFlow Logo" className="w-7 h-7 object-contain" referrerPolicy="no-referrer" />
+            <div className="w-9 h-9 bg-white border border-brand-border/40 rounded-xl overflow-hidden">
+              <img src={logoUrl} alt="DocuFlow Logo" className="w-full h-full object-cover scale-[1.65]" referrerPolicy="no-referrer" />
             </div>
             <span className="font-display font-black text-xl tracking-tight text-brand-primary">
               Naughty PDF
@@ -458,8 +458,8 @@ export const LuminaDashboard: React.FC<LuminaDashboardProps> = ({ user, onToast 
                 <div className="flex flex-col gap-6">
                   {/* Brand inside Mobile Drawer */}
                   <div className="flex items-center gap-3 pb-4 border-b border-brand-border/40">
-                    <div className="w-9 h-9 bg-white border border-brand-border/40 rounded-xl flex items-center justify-center overflow-hidden">
-                      <img src={logoUrl} alt="DocuFlow Logo" className="w-7 h-7 object-contain" referrerPolicy="no-referrer" />
+                    <div className="w-9 h-9 bg-white border border-brand-border/40 rounded-xl overflow-hidden">
+                      <img src={logoUrl} alt="DocuFlow Logo" className="w-full h-full object-cover scale-[1.65]" referrerPolicy="no-referrer" />
                     </div>
                     <span className="font-display font-black text-xl tracking-tight text-brand-primary">
                       Naughty PDF
