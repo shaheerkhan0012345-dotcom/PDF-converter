@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import logoUrl from './assets/images/naughty_pdf_logo_1784005750201.jpg';
+import logoUrl from './assets/images/logo.jpg';
 import { 
   FileText, FileDown, ScanLine, Combine, Scissors, FileEdit, 
   Image as ImageIcon, Minimize2, Lock, Unlock, RotateCw, Stamp, 
@@ -172,7 +172,7 @@ export default function App() {
               transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
             />
             <div className="w-12 h-12 rounded-2xl bg-white flex items-center justify-center border border-brand-border/40 shadow-lg shadow-brand-primary/5 z-10 overflow-hidden">
-              <img src={logoUrl} alt="Naughty PDF Logo" className="w-10 h-10 object-contain" referrerPolicy="no-referrer" />
+              <img src={logoUrl} alt="DocuFlow Logo" className="w-10 h-10 object-contain" referrerPolicy="no-referrer" />
             </div>
           </div>
 
@@ -269,7 +269,7 @@ export default function App() {
           {/* Logo */}
           <a href="#" className="flex items-center gap-2.5 hover:opacity-90 transition-opacity">
             <div className="w-9 h-9 bg-white border border-brand-border/40 text-white rounded-xl flex items-center justify-center shadow-lg shadow-brand-primary/5 overflow-hidden">
-              <img src={logoUrl} alt="Naughty PDF Logo" className="w-7 h-7 object-contain" referrerPolicy="no-referrer" />
+              <img src={logoUrl} alt="DocuFlow Logo" className="w-7 h-7 object-contain" referrerPolicy="no-referrer" />
             </div>
             <span className="font-display font-extrabold text-xl tracking-tight text-brand-text">
               Naughty PDF<span className="text-brand-primary">.</span>
@@ -1226,7 +1226,7 @@ export default function App() {
           <div className="md:col-span-5 flex flex-col items-start gap-4 text-left">
             <a href="#" className="flex items-center gap-2.5 hover:opacity-90 transition-opacity mb-2">
               <div className="w-8 h-8 bg-white text-white rounded-lg flex items-center justify-center shadow-lg shadow-brand-primary/10 overflow-hidden">
-                <img src={logoUrl} alt="Naughty PDF Logo" className="w-6.5 h-6.5 object-contain" referrerPolicy="no-referrer" />
+                <img src={logoUrl} alt="DocuFlow Logo" className="w-6.5 h-6.5 object-contain" referrerPolicy="no-referrer" />
               </div>
               <span className="font-display font-extrabold text-lg tracking-tight text-white">
                 Naughty PDF<span className="text-brand-primary">.</span>
