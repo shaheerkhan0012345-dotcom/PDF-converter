@@ -1,12 +1,12 @@
-# 📄 Naughty Pdf: All-in-One PDF & Office Productivity Suite
+# 📄 Naughty PDF: All-in-One PDF & Office Productivity Suite
 
-**Naughty pdf** is a premium, secure, and blazing-fast offline-first document processor and conversion engine. Designed with a high-contrast, modern slate visual aesthetic and utilizing client-side WebAssembly and GPU-accelerated canvas pipelines, DocuFlow runs complex PDF operations and document parsing securely in the browser.
+**Naughty PDF** is a premium, secure, and blazing-fast offline-first document processor and conversion engine. Designed with a high-contrast, modern slate visual aesthetic and utilizing client-side WebAssembly and GPU-accelerated canvas pipelines, Naughty PDF runs complex PDF operations and document parsing securely in the browser.
 
 ---
 
 ## ✨ Primary Capabilities & Features
 
-DocuFlow houses over **25+ professional tools** categorized into high-performance suites:
+Naughty PDF houses over **25+ professional tools** categorized into high-performance suites:
 
 ### 🔄 1. High-Fidelity Office Converters
 *   **PDF to Word (`.docx`)**: Decompiles embedded structures, margins, and text flow patterns directly into standard editable formats.
@@ -34,7 +34,7 @@ DocuFlow houses over **25+ professional tools** categorized into high-performanc
 
 ## 🛠️ Architecture & Core Dependencies
 
-DocuFlow is built using **React 19**, **TypeScript 5.8**, and **Vite**, relying entirely on robust sandboxed client-side processing:
+Naughty PDF is built using **React 19**, **TypeScript 5.8**, and **Vite**, relying entirely on robust sandboxed client-side processing:
 
 | Dependency | Purpose | Key Usage |
 | :--- | :--- | :--- |
@@ -70,4 +70,4 @@ Generates a highly-optimized, single-page bundle in the `dist/` folder, ready fo
 ---
 
 ## 🔒 Security & Privacy First
-DocuFlow prioritizes user privacy. Because **all document parsing, text extraction, rendering, and conversion occurs directly in your browser**, your sensitive financial, medical, or corporate documents never leave your machine. The optional **Gemini AI Assistant** and **Firestore cloud storage sync** are integrated securely with standard SSL and end-to-end user-authorized cloud pipelines.
+Naughty PDF prioritizes user privacy. Because **all document parsing, text extraction, rendering, and conversion occurs directly in your browser**, your sensitive financial, medical, or corporate documents never leave your machine. The optional **Gemini AI Assistant** and **Firestore cloud storage sync** are integrated securely with standard SSL and end-to-end user-authorized cloud pipelines.
