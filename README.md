@@ -1,6 +1,6 @@
-# 📄 DocuFlow: All-in-One PDF & Office Productivity Suite
+# 📄 Naughty Pdf: All-in-One PDF & Office Productivity Suite
 
-**DocuFlow** is a premium, secure, and blazing-fast offline-first document processor and conversion engine. Designed with a high-contrast, modern slate visual aesthetic and utilizing client-side WebAssembly and GPU-accelerated canvas pipelines, DocuFlow runs complex PDF operations and document parsing securely in the browser.
+**Naughty pdf** is a premium, secure, and blazing-fast offline-first document processor and conversion engine. Designed with a high-contrast, modern slate visual aesthetic and utilizing client-side WebAssembly and GPU-accelerated canvas pipelines, DocuFlow runs complex PDF operations and document parsing securely in the browser.
 
 ---
 
