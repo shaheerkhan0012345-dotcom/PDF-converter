@@ -1,0 +1,69 @@
+# Changelog
+
+All notable changes to **DocuFlow - All-in-One PDF Converter** will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+---
+
+## [Unreleased]
+
+### Planned
+- Batch file processing support
+- Cloud storage integration (Google Drive, Dropbox)
+- OCR (Optical Character Recognition) for scanned PDFs
+- Dark mode toggle
+- Multi-language support
+
+---
+
+## [1.2.0] - 2026-07-18
+
+### Added
+- Utility helper functions for file size formatting, MIME type detection, and date utilities (`src/utils/helpers.ts`)
+- `CHANGELOG.md` to track version history
+- Improved error handling for unsupported file types
+- Tooltip hints on conversion buttons
+
+### Changed
+- Refactored component structure for better maintainability
+- Optimized PDF rendering performance
+
+### Fixed
+- File drag-and-drop not working on Firefox
+- Progress bar stuck at 99% on large files
+
+---
+
+## [1.1.0] - 2026-06-15
+
+### Added
+- PDF to Word (DOCX) conversion
+- PDF to Excel (XLSX) conversion
+- PDF to PowerPoint (PPTX) conversion
+- Image to PDF conversion (JPG, PNG, WEBP)
+- Firebase authentication integration
+
+### Changed
+- Upgraded UI to Lumina Dashboard design system
+- Improved mobile responsiveness
+
+### Fixed
+- PDF preview not rendering on Safari
+- Authentication token expiry not handled gracefully
+
+---
+
+## [1.0.0] - 2026-05-01
+
+### Added
+- Initial release of DocuFlow
+- PDF to image conversion (JPG, PNG)
+- PDF compression
+- PDF merging
+- PDF splitting
+- PDF page reordering
+- Drag-and-drop file upload
+- Real-time conversion progress tracking
+- Download converted files directly from browser
