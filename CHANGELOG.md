@@ -91,3 +91,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <!-- patch-11: - Refactored async/await error handling patterns -->
 
 <!-- patch-12: - Improved mobile layout padding on small screens -->
+
+<!-- patch-13: - Added support for detecting corrupt PDF headers -->
