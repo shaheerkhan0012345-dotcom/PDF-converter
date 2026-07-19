@@ -115,3 +115,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <!-- extra-patch-6: - Added debounce to resize event listener -->
 
 <!-- extra-patch-7: - Fixed off-by-one error in page range validation -->
+
+<!-- extra-patch-8: - Removed deprecated API calls from auth module -->
