@@ -129,3 +129,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <!-- extra-patch-13: - Added passive flag to scroll event listeners -->
 
 <!-- extra-patch-14: - Improved error boundary fallback UI message -->
+
+<!-- extra-patch-15: - Refactored repetitive string literals into constants -->
