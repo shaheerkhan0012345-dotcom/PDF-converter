@@ -83,3 +83,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <!-- patch-7: - Optimized image compression algorithm parameters -->
 
 <!-- patch-8: - Fixed minor typo in error message strings -->
+
+<!-- patch-9: - Improved drag-and-drop highlight border style -->
