@@ -81,3 +81,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <!-- patch-6: - Added keyboard shortcut hints to UI tooltips -->
 
 <!-- patch-7: - Optimized image compression algorithm parameters -->
+
+<!-- patch-8: - Fixed minor typo in error message strings -->
