@@ -85,3 +85,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <!-- patch-8: - Fixed minor typo in error message strings -->
 
 <!-- patch-9: - Improved drag-and-drop highlight border style -->
+
+<!-- patch-10: - Added file extension whitelist validation -->
