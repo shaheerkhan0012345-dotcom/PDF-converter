@@ -89,3 +89,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <!-- patch-10: - Added file extension whitelist validation -->
 
 <!-- patch-11: - Refactored async/await error handling patterns -->
+
+<!-- patch-12: - Improved mobile layout padding on small screens -->
