@@ -75,3 +75,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <!-- patch-3: - Minor code cleanup in utility functions -->
 
 <!-- patch-4: - Refactored file validation logic for clarity -->
+
+<!-- patch-5: - Updated tooltip text for conversion buttons -->
