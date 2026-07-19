@@ -67,3 +67,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Drag-and-drop file upload
 - Real-time conversion progress tracking
 - Download converted files directly from browser
+
+<!-- patch-1: - Improved loading spinner animation smoothness -->
