@@ -97,3 +97,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <!-- patch-14: - Minor cleanup of unused CSS class references -->
 
 <!-- patch-15: - Improved progress bar update frequency -->
+
+<!-- patch-16: - Fixed edge case in multi-file merge ordering -->
