@@ -127,3 +127,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <!-- extra-patch-12: - Fixed z-index stacking issue on modal overlay -->
 
 <!-- extra-patch-13: - Added passive flag to scroll event listeners -->
+
+<!-- extra-patch-14: - Improved error boundary fallback UI message -->
