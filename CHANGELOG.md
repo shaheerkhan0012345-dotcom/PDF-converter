@@ -71,3 +71,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <!-- patch-1: - Improved loading spinner animation smoothness -->
 
 <!-- patch-2: - Added aria-label attributes for better accessibility -->
+
+<!-- patch-3: - Minor code cleanup in utility functions -->
