@@ -95,3 +95,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <!-- patch-13: - Added support for detecting corrupt PDF headers -->
 
 <!-- patch-14: - Minor cleanup of unused CSS class references -->
+
+<!-- patch-15: - Improved progress bar update frequency -->
