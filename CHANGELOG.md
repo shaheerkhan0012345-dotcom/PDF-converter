@@ -117,3 +117,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <!-- extra-patch-7: - Fixed off-by-one error in page range validation -->
 
 <!-- extra-patch-8: - Removed deprecated API calls from auth module -->
+
+<!-- extra-patch-9: - Improved file size display precision to 2 decimal places -->
