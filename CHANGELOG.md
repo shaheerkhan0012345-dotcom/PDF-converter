@@ -99,3 +99,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <!-- patch-15: - Improved progress bar update frequency -->
 
 <!-- patch-16: - Fixed edge case in multi-file merge ordering -->
+
+<!-- patch-17: - Added retry logic for failed conversion requests -->
