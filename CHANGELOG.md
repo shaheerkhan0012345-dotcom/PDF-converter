@@ -157,3 +157,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <!-- patch-b2-9: - Improved contrast ratio on secondary text elements -->
 
 <!-- patch-b2-10: - Fixed stale closure in drag-and-drop event handler -->
+
+<!-- patch-b2-11: - Added missing loading state to export button -->
