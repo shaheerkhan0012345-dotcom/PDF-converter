@@ -165,3 +165,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <!-- patch-b2-13: - Improved error message copy for upload failures -->
 
 <!-- patch-b2-14: - Fixed tab order in settings dialog -->
+
+<!-- patch-b2-15: - Added title attribute to progress bar element -->
