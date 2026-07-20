@@ -169,3 +169,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <!-- patch-b2-15: - Added title attribute to progress bar element -->
 
 <!-- patch-b2-16: - Removed unused imported utilities from helpers file -->
+
+<!-- patch-b2-17: - Fixed incorrect MIME type check for PDF files -->
