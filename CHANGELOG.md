@@ -161,3 +161,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <!-- patch-b2-11: - Added missing loading state to export button -->
 
 <!-- patch-b2-12: - Cleaned up unused CSS selector rules -->
+
+<!-- patch-b2-13: - Improved error message copy for upload failures -->
