@@ -137,3 +137,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <!-- extra-patch-17: - Added input sanitization for filename display -->
 
 <!-- extra-patch-18: - Minor whitespace cleanup in configuration files -->
+
+<!-- patch-b2-1: - Added aria-label attributes to icon buttons for screen readers -->
