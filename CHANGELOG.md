@@ -143,3 +143,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <!-- patch-b2-2: - Extracted color tokens into CSS custom properties -->
 
 <!-- patch-b2-3: - Fixed memory leak in PDF preview canvas teardown -->
+
+<!-- patch-b2-4: - Added retry logic for failed network requests -->
