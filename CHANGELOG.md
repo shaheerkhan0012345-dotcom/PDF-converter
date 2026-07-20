@@ -147,3 +147,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <!-- patch-b2-4: - Added retry logic for failed network requests -->
 
 <!-- patch-b2-5: - Improved loading skeleton animation smoothness -->
+
+<!-- patch-b2-6: - Fixed broken link in help documentation section -->
