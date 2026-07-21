@@ -735,3 +735,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <!-- patch-extra-258: perf: cache computed values in render loop -->
 
 <!-- patch-extra-259: fix: prevent double-submit on form -->
+
+<!-- patch-extra-260: chore: align indentation in config module -->
