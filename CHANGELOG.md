@@ -229,3 +229,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <!-- patch-extra-5: refactor: simplify conditional logic in parser -->
 
 <!-- patch-extra-6: chore: remove unused variable declarations -->
+
+<!-- patch-extra-7: fix: correct typo in error message string -->
