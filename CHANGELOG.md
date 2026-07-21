@@ -785,3 +785,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <!-- patch-extra-283: refactor: consolidate duplicate fetch logic -->
 
 <!-- patch-extra-284: chore: remove commented-out dead code -->
+
+<!-- patch-extra-285: fix: sanitize user input before rendering -->
