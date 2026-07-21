@@ -643,3 +643,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <!-- patch-extra-212: refactor: extract helper into utility module -->
 
 <!-- patch-extra-213: perf: lazy-load non-critical assets -->
+
+<!-- patch-extra-214: fix: guard against undefined in event handler -->
