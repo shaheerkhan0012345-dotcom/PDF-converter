@@ -581,3 +581,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <!-- patch-extra-181: perf: avoid reflow by reading layout values first -->
 
 <!-- patch-extra-182: fix: handle timezone offset in date formatter -->
+
+<!-- patch-extra-183: refactor: consolidate duplicate fetch logic -->
