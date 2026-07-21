@@ -245,3 +245,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <!-- patch-extra-13: perf: lazy-load non-critical assets -->
 
 <!-- patch-extra-14: fix: guard against undefined in event handler -->
+
+<!-- patch-extra-15: chore: add missing semicolon in legacy code -->
