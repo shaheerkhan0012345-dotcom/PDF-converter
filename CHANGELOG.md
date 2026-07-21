@@ -537,3 +537,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <!-- patch-extra-159: fix: prevent double-submit on form -->
 
 <!-- patch-extra-160: chore: align indentation in config module -->
+
+<!-- patch-extra-161: fix: correct default value for timeout option -->
