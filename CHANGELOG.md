@@ -713,3 +713,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <!-- patch-extra-247: perf: short-circuit evaluation in filter chain -->
 
 <!-- patch-extra-248: fix: resolve circular dependency in imports -->
+
+<!-- patch-extra-249: chore: standardize quote style across module -->
