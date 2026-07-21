@@ -397,3 +397,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <!-- patch-extra-89: fix: add missing return statement in callback -->
 
 <!-- patch-extra-90: refactor: move constants to dedicated file -->
+
+<!-- patch-extra-91: fix: handle network timeout gracefully -->
