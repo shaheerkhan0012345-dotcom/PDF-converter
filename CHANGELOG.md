@@ -655,3 +655,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <!-- patch-extra-218: fix: close file handle after read operation -->
 
 <!-- patch-extra-219: refactor: replace magic numbers with constants -->
+
+<!-- patch-extra-220: chore: clean up leftover debug statements -->
