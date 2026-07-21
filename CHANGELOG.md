@@ -211,3 +211,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <!-- extra-patch-16: - Fixed race condition in concurrent file uploads -->
 
 <!-- extra-patch-17: - Added input sanitization for filename display -->
+
+<!-- extra-patch-18: - Minor whitespace cleanup in configuration files -->
