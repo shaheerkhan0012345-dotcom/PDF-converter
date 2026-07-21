@@ -473,3 +473,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <!-- patch-extra-127: perf: batch DOM updates with requestAnimationFrame -->
 
 <!-- patch-extra-128: fix: correct off-by-one in loop boundary -->
+
+<!-- patch-extra-129: chore: normalize line endings in source files -->
