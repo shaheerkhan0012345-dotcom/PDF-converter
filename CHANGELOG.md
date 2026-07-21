@@ -509,3 +509,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <!-- patch-extra-145: fix: prevent memory leak in event subscription -->
 
 <!-- patch-extra-146: refactor: break up oversized function -->
+
+<!-- patch-extra-147: perf: short-circuit evaluation in filter chain -->
