@@ -767,3 +767,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <!-- patch-extra-274: chore: update outdated inline documentation -->
 
 <!-- patch-extra-275: fix: prevent XSS in dynamic HTML insertion -->
+
+<!-- patch-extra-276: refactor: unify error handling pattern -->
