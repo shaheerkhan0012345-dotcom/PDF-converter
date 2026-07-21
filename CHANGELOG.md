@@ -749,3 +749,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <!-- patch-extra-265: chore: add missing semicolon in legacy code -->
 
 <!-- patch-extra-266: fix: normalize path separators on Windows -->
+
+<!-- patch-extra-267: perf: memoize expensive filter function -->
