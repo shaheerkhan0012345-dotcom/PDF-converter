@@ -423,3 +423,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <!-- patch-extra-102: chore: update internal comment formatting -->
 
 <!-- patch-extra-103: perf: reduce unnecessary DOM queries -->
+
+<!-- patch-extra-104: fix: handle null response in fetch wrapper -->
