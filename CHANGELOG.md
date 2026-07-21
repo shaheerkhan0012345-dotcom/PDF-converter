@@ -185,3 +185,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <!-- extra-patch-3: - Refactored promise chain to async/await in upload handler -->
 
 <!-- extra-patch-4: - Cleaned up redundant null checks in parser module -->
+
+<!-- extra-patch-5: - Improved button focus ring visibility for accessibility -->
