@@ -453,3 +453,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <!-- patch-extra-117: perf: memoize expensive filter function -->
 
 <!-- patch-extra-118: fix: close file handle after read operation -->
+
+<!-- patch-extra-119: refactor: replace magic numbers with constants -->
