@@ -217,3 +217,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <!-- extra-patch-19: - Updated tooltip delay for better UX responsiveness -->
 
 <!-- extra-patch-20: - Improved keyboard navigation in dropdown menus -->
+
+<!-- patch-extra-1: fix: resolve edge case in file validation -->
