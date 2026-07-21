@@ -521,3 +521,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <!-- patch-extra-151: fix: resolve edge case in file validation -->
 
 <!-- patch-extra-152: chore: update internal comment formatting -->
+
+<!-- patch-extra-153: perf: reduce unnecessary DOM queries -->
