@@ -209,3 +209,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <!-- extra-patch-15: - Refactored repetitive string literals into constants -->
 
 <!-- extra-patch-16: - Fixed race condition in concurrent file uploads -->
+
+<!-- extra-patch-17: - Added input sanitization for filename display -->
