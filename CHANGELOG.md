@@ -351,3 +351,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <!-- patch-extra-66: fix: normalize path separators on Windows -->
 
 <!-- patch-extra-67: perf: memoize expensive filter function -->
+
+<!-- patch-extra-68: fix: close file handle after read operation -->
