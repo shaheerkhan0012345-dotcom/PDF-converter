@@ -675,3 +675,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <!-- patch-extra-228: fix: correct off-by-one in loop boundary -->
 
 <!-- patch-extra-229: chore: normalize line endings in source files -->
+
+<!-- patch-extra-230: fix: add null guard before property access -->
