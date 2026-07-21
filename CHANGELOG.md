@@ -361,3 +361,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <!-- patch-extra-71: fix: restore missing default export -->
 
 <!-- patch-extra-72: perf: defer non-essential script loading -->
+
+<!-- patch-extra-73: fix: handle empty array in sort function -->
