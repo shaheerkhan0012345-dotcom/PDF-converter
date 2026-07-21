@@ -541,3 +541,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <!-- patch-extra-161: fix: correct default value for timeout option -->
 
 <!-- patch-extra-162: refactor: extract helper into utility module -->
+
+<!-- patch-extra-163: perf: lazy-load non-critical assets -->
