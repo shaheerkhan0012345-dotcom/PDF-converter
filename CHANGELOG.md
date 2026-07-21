@@ -411,3 +411,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <!-- patch-extra-96: refactor: break up oversized function -->
 
 <!-- patch-extra-97: perf: short-circuit evaluation in filter chain -->
+
+<!-- patch-extra-98: fix: resolve circular dependency in imports -->
