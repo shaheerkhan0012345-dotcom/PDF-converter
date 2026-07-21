@@ -631,3 +631,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <!-- patch-extra-206: chore: remove unused variable declarations -->
 
 <!-- patch-extra-207: fix: correct typo in error message string -->
+
+<!-- patch-extra-208: perf: cache computed values in render loop -->
