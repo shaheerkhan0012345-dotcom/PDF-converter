@@ -705,3 +705,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <!-- patch-extra-243: fix: correct assertion in validation function -->
 
 <!-- patch-extra-244: chore: reformat object literals for readability -->
+
+<!-- patch-extra-245: fix: prevent memory leak in event subscription -->
