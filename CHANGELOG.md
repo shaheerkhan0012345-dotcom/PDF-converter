@@ -587,3 +587,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <!-- patch-extra-184: chore: remove commented-out dead code -->
 
 <!-- patch-extra-185: fix: sanitize user input before rendering -->
+
+<!-- patch-extra-186: perf: throttle high-frequency scroll handler -->
