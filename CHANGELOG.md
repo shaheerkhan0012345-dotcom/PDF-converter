@@ -699,3 +699,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <!-- patch-extra-240: refactor: move constants to dedicated file -->
 
 <!-- patch-extra-241: fix: handle network timeout gracefully -->
+
+<!-- patch-extra-242: perf: use WeakMap for private data storage -->
