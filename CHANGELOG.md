@@ -395,3 +395,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <!-- patch-extra-88: chore: update function signature documentation -->
 
 <!-- patch-extra-89: fix: add missing return statement in callback -->
+
+<!-- patch-extra-90: refactor: move constants to dedicated file -->
