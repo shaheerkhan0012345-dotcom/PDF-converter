@@ -347,3 +347,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <!-- patch-extra-64: fix: guard against undefined in event handler -->
 
 <!-- patch-extra-65: chore: add missing semicolon in legacy code -->
+
+<!-- patch-extra-66: fix: normalize path separators on Windows -->
