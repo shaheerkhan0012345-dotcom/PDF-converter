@@ -407,3 +407,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <!-- patch-extra-94: chore: reformat object literals for readability -->
 
 <!-- patch-extra-95: fix: prevent memory leak in event subscription -->
+
+<!-- patch-extra-96: refactor: break up oversized function -->
