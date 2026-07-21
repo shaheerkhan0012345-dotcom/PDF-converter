@@ -683,3 +683,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <!-- patch-extra-232: fix: handle timezone offset in date formatter -->
 
 <!-- patch-extra-233: refactor: consolidate duplicate fetch logic -->
+
+<!-- patch-extra-234: chore: remove commented-out dead code -->
