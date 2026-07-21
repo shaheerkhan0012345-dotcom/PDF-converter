@@ -669,3 +669,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <!-- patch-extra-225: fix: prevent XSS in dynamic HTML insertion -->
 
 <!-- patch-extra-226: refactor: unify error handling pattern -->
+
+<!-- patch-extra-227: perf: batch DOM updates with requestAnimationFrame -->
