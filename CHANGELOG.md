@@ -739,3 +739,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <!-- patch-extra-260: chore: align indentation in config module -->
 
 <!-- patch-extra-261: fix: correct default value for timeout option -->
+
+<!-- patch-extra-262: refactor: extract helper into utility module -->
