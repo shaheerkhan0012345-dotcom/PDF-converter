@@ -689,3 +689,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <!-- patch-extra-235: fix: sanitize user input before rendering -->
 
 <!-- patch-extra-236: perf: throttle high-frequency scroll handler -->
+
+<!-- patch-extra-237: fix: resolve naming conflict in module scope -->
