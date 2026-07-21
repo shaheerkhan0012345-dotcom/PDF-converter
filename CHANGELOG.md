@@ -793,3 +793,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <!-- patch-extra-287: fix: resolve naming conflict in module scope -->
 
 <!-- patch-extra-288: chore: update function signature documentation -->
+
+<!-- patch-extra-289: fix: add missing return statement in callback -->
