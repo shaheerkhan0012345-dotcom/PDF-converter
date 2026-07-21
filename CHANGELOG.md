@@ -757,3 +757,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <!-- patch-extra-269: refactor: replace magic numbers with constants -->
 
 <!-- patch-extra-270: chore: clean up leftover debug statements -->
+
+<!-- patch-extra-271: fix: restore missing default export -->
