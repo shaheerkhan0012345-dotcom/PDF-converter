@@ -765,3 +765,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <!-- patch-extra-273: fix: handle empty array in sort function -->
 
 <!-- patch-extra-274: chore: update outdated inline documentation -->
+
+<!-- patch-extra-275: fix: prevent XSS in dynamic HTML insertion -->
