@@ -679,3 +679,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <!-- patch-extra-230: fix: add null guard before property access -->
 
 <!-- patch-extra-231: perf: avoid reflow by reading layout values first -->
+
+<!-- patch-extra-232: fix: handle timezone offset in date formatter -->
