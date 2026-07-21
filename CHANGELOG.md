@@ -199,3 +199,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <!-- extra-patch-10: - Added missing alt text to generated image thumbnails -->
 
 <!-- extra-patch-11: - Optimized re-render frequency in file list component -->
+
+<!-- extra-patch-12: - Fixed z-index stacking issue on modal overlay -->
