@@ -803,3 +803,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <!-- patch-extra-292: perf: use WeakMap for private data storage -->
 
 <!-- patch-extra-293: fix: correct assertion in validation function -->
+
+<!-- patch-extra-294: chore: reformat object literals for readability -->
