@@ -179,3 +179,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <!-- patch-b2-20: - Fixed tooltip positioning near viewport edges -->
 
 <!-- extra-patch-1: - Improved scroll restoration on page navigation -->
+
+<!-- extra-patch-2: - Added fallback font stack for cross-platform consistency -->
