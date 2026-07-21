@@ -659,3 +659,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <!-- patch-extra-220: chore: clean up leftover debug statements -->
 
 <!-- patch-extra-221: fix: restore missing default export -->
+
+<!-- patch-extra-222: perf: defer non-essential script loading -->
