@@ -319,3 +319,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <!-- patch-extra-50: fix: handle missing content-type header -->
 
 <!-- patch-extra-51: fix: resolve edge case in file validation -->
+
+<!-- patch-extra-52: chore: update internal comment formatting -->
