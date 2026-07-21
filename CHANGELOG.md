@@ -777,3 +777,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <!-- patch-extra-279: chore: normalize line endings in source files -->
 
 <!-- patch-extra-280: fix: add null guard before property access -->
+
+<!-- patch-extra-281: perf: avoid reflow by reading layout values first -->
