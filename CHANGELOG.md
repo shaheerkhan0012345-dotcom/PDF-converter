@@ -801,3 +801,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <!-- patch-extra-291: fix: handle network timeout gracefully -->
 
 <!-- patch-extra-292: perf: use WeakMap for private data storage -->
+
+<!-- patch-extra-293: fix: correct assertion in validation function -->
