@@ -363,3 +363,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <!-- patch-extra-72: perf: defer non-essential script loading -->
 
 <!-- patch-extra-73: fix: handle empty array in sort function -->
+
+<!-- patch-extra-74: chore: update outdated inline documentation -->
