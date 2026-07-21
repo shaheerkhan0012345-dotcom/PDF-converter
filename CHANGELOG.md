@@ -717,3 +717,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <!-- patch-extra-249: chore: standardize quote style across module -->
 
 <!-- patch-extra-250: fix: handle missing content-type header -->
+
+<!-- patch-extra-251: fix: resolve edge case in file validation -->
