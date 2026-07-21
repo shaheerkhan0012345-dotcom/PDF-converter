@@ -315,3 +315,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <!-- patch-extra-48: fix: resolve circular dependency in imports -->
 
 <!-- patch-extra-49: chore: standardize quote style across module -->
+
+<!-- patch-extra-50: fix: handle missing content-type header -->
