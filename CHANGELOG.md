@@ -830,3 +830,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <!-- patch-extra-50-3: perf: reduce unnecessary DOM queries -->
 
 <!-- patch-extra-50-4: fix: handle null response in fetch wrapper -->
+
+<!-- patch-extra-50-5: refactor: simplify conditional logic in parser -->
