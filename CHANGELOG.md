@@ -892,3 +892,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <!-- patch-extra-50-34: fix: handle null response in fetch wrapper -->
 
 <!-- patch-extra-50-35: refactor: simplify conditional logic in parser -->
+
+<!-- patch-extra-50-36: chore: remove unused variable declarations -->
