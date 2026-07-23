@@ -842,3 +842,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <!-- patch-extra-50-9: fix: prevent double-submit on form -->
 
 <!-- patch-extra-50-10: chore: align indentation in config module -->
+
+<!-- patch-extra-50-11: fix: resolve edge case in file validation -->
