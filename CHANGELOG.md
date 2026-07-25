@@ -924,3 +924,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <!-- patch-extra-50-50: chore: align indentation in config module -->
 
 <!-- patch-extra-50-1: fix: resolve edge case in file validation -->
+
+<!-- patch-extra-50-2: chore: update internal comment formatting -->
